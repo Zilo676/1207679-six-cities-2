@@ -1,6 +1,9 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const MainPage = () => {
+const MainPage = (props) => {
+  const {premise} = props;
+
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -97,7 +100,7 @@ const MainPage = () => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;120</b>
+                      <b className="place-card__price-value">&euro;{premise[0].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -109,14 +112,14 @@ const MainPage = () => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: 93 + `%`}}></span>
+                      <span style={{width: premise[0].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                    <a href="#">{premise[0].description}</a>
                   </h2>
-                  <p className="place-card__type">Apartment</p>
+                  <p className="place-card__type">{premise[0].type}</p>
                 </div>
               </article>
 
@@ -129,7 +132,7 @@ const MainPage = () => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;80</b>
+                      <b className="place-card__price-value">&euro;{premise[1].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -141,14 +144,14 @@ const MainPage = () => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: 80 + `%`}}></span>
+                      <span style={{width: premise[1].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
+                    <a href="#">{premise[1].description}</a>
                   </h2>
-                  <p className="place-card__type">Private room</p>
+                  <p className="place-card__type">{premise[1].type}</p>
                 </div>
               </article>
 
@@ -161,7 +164,7 @@ const MainPage = () => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;132</b>
+                      <b className="place-card__price-value">&euro;{premise[2].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -173,14 +176,14 @@ const MainPage = () => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: 80 + `%`}}></span>
+                      <span style={{width: premise[2].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Canal View Prinsengracht</a>
+                    <a href="#">{premise[2].description}</a>
                   </h2>
-                  <p className="place-card__type">Apartment</p>
+                  <p className="place-card__type">{premise[2].type}</p>
                 </div>
               </article>
 
@@ -196,7 +199,7 @@ const MainPage = () => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;180</b>
+                      <b className="place-card__price-value">&euro;{premise[3].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -208,46 +211,14 @@ const MainPage = () => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: 100 + `%`}}></span>
+                      <span style={{width: premise[3].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
+                    <a href="#">{premise[3].description}</a>
                   </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-
-              <article className="cities__place-card place-card">
-                <div className="cities__image-wrapper place-card__image-wrapper">
-                  <a href="#">
-                    <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                  </a>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;80</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark-active"></use>
-                      </svg>
-                      <span className="visually-hidden">In bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: 80 + `%`}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
-                  </h2>
-                  <p className="place-card__type">Private room</p>
+                  <p className="place-card__type">{premise[3].type}</p>
                 </div>
               </article>
             </div>
@@ -259,6 +230,15 @@ const MainPage = () => {
       </div>
     </main>
   </div >;
+};
+
+MainPage.propTypes = {
+  premise: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    raiting: PropTypes.number
+  })).isRequired
 };
 
 export {MainPage};
