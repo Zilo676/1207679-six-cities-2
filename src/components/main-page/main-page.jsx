@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
-  const {premise} = props;
+  const {premises} = props;
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -100,7 +100,7 @@ const MainPage = (props) => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;{premise[0].price}</b>
+                      <b className="place-card__price-value">&euro;{premises[0].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -112,14 +112,14 @@ const MainPage = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: premise[0].raiting + `%`}}></span>
+                      <span style={{width: premises[0].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">{premise[0].description}</a>
+                    <a href="#">{premises[0].description}</a>
                   </h2>
-                  <p className="place-card__type">{premise[0].type}</p>
+                  <p className="place-card__type">{premises[0].type}</p>
                 </div>
               </article>
 
@@ -132,7 +132,7 @@ const MainPage = (props) => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;{premise[1].price}</b>
+                      <b className="place-card__price-value">&euro;{premises[1].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -144,14 +144,14 @@ const MainPage = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: premise[1].raiting + `%`}}></span>
+                      <span style={{width: premises[1].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">{premise[1].description}</a>
+                    <a href="#">{premises[1].description}</a>
                   </h2>
-                  <p className="place-card__type">{premise[1].type}</p>
+                  <p className="place-card__type">{premises[1].type}</p>
                 </div>
               </article>
 
@@ -164,7 +164,7 @@ const MainPage = (props) => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;{premise[2].price}</b>
+                      <b className="place-card__price-value">&euro;{premises[2].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -176,14 +176,14 @@ const MainPage = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: premise[2].raiting + `%`}}></span>
+                      <span style={{width: premises[2].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">{premise[2].description}</a>
+                    <a href="#">{premises[2].description}</a>
                   </h2>
-                  <p className="place-card__type">{premise[2].type}</p>
+                  <p className="place-card__type">{premises[2].type}</p>
                 </div>
               </article>
 
@@ -199,7 +199,7 @@ const MainPage = (props) => {
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
                     <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;{premise[3].price}</b>
+                      <b className="place-card__price-value">&euro;{premises[3].price}</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
@@ -211,14 +211,14 @@ const MainPage = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: premise[3].raiting + `%`}}></span>
+                      <span style={{width: premises[3].raiting + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">{premise[3].description}</a>
+                    <a href="#">{premises[3].description}</a>
                   </h2>
-                  <p className="place-card__type">{premise[3].type}</p>
+                  <p className="place-card__type">{premises[3].type}</p>
                 </div>
               </article>
             </div>
@@ -233,7 +233,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  premise: PropTypes.arrayOf(PropTypes.shape({
+  premises: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,
     price: PropTypes.number,
     description: PropTypes.string,
