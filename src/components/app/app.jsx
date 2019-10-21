@@ -25,7 +25,7 @@ const Premises = [{
 }];
 
 const App = () => {
-  return <MainPage premises={Premises} />;
+  return <MainPage key={} premises={Premises} />;
 };
 
 export {App};
