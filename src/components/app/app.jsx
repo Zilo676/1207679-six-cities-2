@@ -24,8 +24,10 @@ const Premises = [{
   raiting: 100
 }];
 
+const onTitleClick = () => {};
+
 const App = () => {
-  return <MainPage premises={Premises} />;
+  return <MainPage premises={Premises} onTitleClick={onTitleClick}/>;
 };
 
 export {App};

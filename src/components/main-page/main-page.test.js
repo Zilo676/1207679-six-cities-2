@@ -25,7 +25,9 @@ const Premises = [{
   raiting: 100
 }];
 
+const onTitleClick = () => {};
+
 it(`Correctly rendered`, () => {
-  const tree = renderer.create(<MainPage premises={Premises}/>).toJSON();
+  const tree = renderer.create(<MainPage premises={Premises} onTitleClick={onTitleClick}/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
