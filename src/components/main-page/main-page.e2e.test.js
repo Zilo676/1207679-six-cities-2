@@ -10,7 +10,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`All titles invokes callback`, () => {
   const clickHandler = jest.fn();
-  const mainPage = mount(<MainPage premises={offers} onOfferCardHover={clickHandler} />);
+  const mainPage = mount(<MainPage premises={offers}/>);
 
   const titles = mainPage.find(`.place-card`);
   titles.forEach((title) => {

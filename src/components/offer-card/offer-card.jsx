@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const OfferCard = (props) => {
   const {type, price, description, raiting, onOfferCardHover} = props;
-  const offerCardHandler = (evt) =>{
+  const handleOfferCardHover = (evt) =>{
     evt.preventDefault();
     onOfferCardHover(evt, {type, price, description, raiting});
   };
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={offerCardHandler}>
+    <article className="cities__place-card place-card" onMouseEnter={handleOfferCardHover}>
       <div className="place-card__mark" >
         <span>Premium</span>
       </div>
