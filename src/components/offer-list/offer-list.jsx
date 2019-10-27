@@ -12,9 +12,9 @@ class OfferList extends React.PureComponent {
     this.handleOfferCardHover = this.handleOfferCardHover.bind(this);
   }
 
-  handleOfferCardHover(evt, offer) {
+  handleOfferCardHover(offer) {
     this.setState({
-      offer: {offer}
+      offer
     });
   }
 
