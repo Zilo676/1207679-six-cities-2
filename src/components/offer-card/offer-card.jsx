@@ -5,7 +5,7 @@ const OfferCard = (props) => {
   const {type, price, description, raiting, onOfferCardHover} = props;
   const handleOfferCardHover = (evt) =>{
     evt.preventDefault();
-    onOfferCardHover(evt, {type, price, description, raiting});
+    onOfferCardHover({type, price, description, raiting});
   };
 
   return (
