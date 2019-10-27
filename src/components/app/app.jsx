@@ -1,33 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import {MainPage} from '../main-page/main-page.jsx';
 
-const Premises = [{
-  type: `Apartament`,
-  price: 120,
-  description: `Beautiful & luxurious apartment at great location`,
-  raiting: 93
-},
-{
-  type: `Private room`,
-  price: 80,
-  description: `Wood and stone place`,
-  raiting: 80
-}, {
-  type: `Apartament`,
-  price: 132,
-  description: `Canal View Prinsengracht`,
-  raiting: 80
-}, {
-  type: `Apartament`,
-  price: 180,
-  description: `Nice, cozy, warm big bed apartment`,
-  raiting: 100
-}];
+import {offers} from '../../mocks/offers.js';
 
-const onTitleClick = () => {};
+const onOfferCardHover = (evt, offer) => offer;
 
 const App = () => {
-  return <MainPage premises={Premises} onTitleClick={onTitleClick}/>;
+  return <MainPage premises={offers} onOfferCardHover={onOfferCardHover} />;
 };
 
 export {App};
