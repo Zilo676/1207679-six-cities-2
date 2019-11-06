@@ -14,7 +14,9 @@ it(`All cards return correct values`, () => {
 
   cards.forEach((card, i) => {
     card.simulate(`mouseenter`);
+    // TODO: fix console log error
     delete offers[i].id;
+    delete offers[i].coordinates;
     expect(offerList.state().offer).toEqual(offers[i]);
   });
 
