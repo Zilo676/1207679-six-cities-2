@@ -55,7 +55,11 @@ class Map extends React.PureComponent {
 
 // TODO: Написать кастомный пропс с длинной массива в 2 элемента
 Map.propTypes = {
-  coordinates: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  coordinates: PropTypes.arrayOf(
+      PropTypes.arrayOf(
+          PropTypes.number.isRequired
+      ).isRequired
+  ).isRequired,
 };
 
 export {Map};
