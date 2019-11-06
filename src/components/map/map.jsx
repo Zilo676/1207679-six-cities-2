@@ -14,6 +14,8 @@ const MapConfiguration = {
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._mapRef = React.createRef();
   }
 
   componentDidMount() {
@@ -21,7 +23,8 @@ class Map extends React.PureComponent {
   }
 
   _initializeMap() {
-    const map = leaflet.map(`map`, {
+    const container = this._mapRef.current;
+    const map = leaflet.map(container, {
       center: MapConfiguration.CITY,
       zoom: MapConfiguration.ZOOM,
       zoomControl: false,
@@ -49,7 +52,7 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <div className="cities__map map" id="map" />;
+    return <div className="cities__map map" id="map" ref={this._mapRef}/>;
   }
 }
 
