@@ -11,6 +11,11 @@ const MapConfiguration = {
   CITY: [52.38333, 4.9],
 };
 
+const icon = leaflet.icon({
+  iconUrl: MapConfiguration.ICON_URL,
+  iconSize: MapConfiguration.ICON_SIZE
+});
+
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -20,49 +25,66 @@ class Map extends React.PureComponent {
 
   componentDidMount() {
     this._initializeMap();
+    this._setMapView(this.props.city.coordinates);
+    this._setMarkerGroup();
+    this._setPoints();
+  }
+
+  componentDidUpdate() {
+    this._markerGroup.clearLayers();
+    this._setMapView(this.props.city.coordinates);
+    this._setMarkerGroup();
+    this._setPoints();
   }
 
   _initializeMap() {
     const container = this._mapRef.current;
-    const map = leaflet.map(container, {
+    this._map = leaflet.map(container, {
       center: MapConfiguration.CITY,
       zoom: MapConfiguration.ZOOM,
       zoomControl: false,
       marker: true
     });
+  }
 
-    map.setView(MapConfiguration.CITY, MapConfiguration.ZOOM);
+  _setMarkerGroup(){
+    this._markerGroup = leaflet.layerGroup().addTo(this._map);
+  }
+
+  _setMapView(cityCoordinates) {
+    this._map.setView(cityCoordinates, MapConfiguration.ZOOM);
     leaflet
       .tileLayer(MapConfiguration.TILE_LAYER, {
         attribution: MapConfiguration.TILE_ATTRIBUTE
       })
-      .addTo(map);
+      .addTo(this._map);
+  }
 
-    const icon = leaflet.icon({
-      iconUrl: MapConfiguration.ICON_URL,
-      iconSize: MapConfiguration.ICON_SIZE
-    });
-
+  _setPoints() {
     const offersСoordinates = this.props.coordinates;
     offersСoordinates.forEach((it) => {
       leaflet
         .marker(it, {icon})
-        .addTo(map);
+        .addTo(this._markerGroup);
     });
   }
 
   render() {
-    return <div className="cities__map map" id="map" ref={this._mapRef}/>;
+    return <div className="cities__map map" id="map" ref={this._mapRef} />;
   }
 }
 
 // TODO: Написать кастомный пропс с длинной массива в 2 элемента
 Map.propTypes = {
   coordinates: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-          PropTypes.number.isRequired
-      ).isRequired
+    PropTypes.arrayOf(
+      PropTypes.number.isRequired
+    ).isRequired
   ).isRequired,
+  city: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    coordinates: PropTypes.array.isRequired,
+  }),
 };
 
 export {Map};

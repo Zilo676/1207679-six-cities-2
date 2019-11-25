@@ -6,12 +6,11 @@ const Action = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-const filterOffersByCity = (offers, city) => { debugger
-  return offers.filter((offer) => offer.city === city)};
+const filterOffersByCity = (offers, city) => {return offers.filter((offer) => offer.city === city)};
 
 const initialState = {
-  city: City.AMSTERDAM,
-  offers: filterOffersByCity(offers, City.AMSTERDAM),
+  city: City.AMSTERDAM.title,
+  offers: filterOffersByCity(offers, City.AMSTERDAM.title),
 };
 
 const ActionCreator = {

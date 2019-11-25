@@ -6,6 +6,8 @@ import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
 
+import {City} from '../../mocks/cities.js';
+
 class MainPage extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -69,7 +71,7 @@ class MainPage extends React.PureComponent {
                 <OfferList offers={this.props.offers} />
               </section>
               <div className="cities__right-section">
-                <Map coordinates={this.props.offers.map((offer) => offer.coordinates)} />
+                <Map coordinates={this.props.offers.map((offer) => {debugger; return offer.coordinates})} city={City[this.props.city.toUpperCase()]} />
               </div>
             </div>
           </div>
