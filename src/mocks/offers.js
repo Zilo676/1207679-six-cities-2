@@ -34,6 +34,15 @@ const offers = [
     coordinates: [52.3809553943508, 4.939309666406198],
     raiting: 100,
     city: `Amsterdam`,
+  },
+  {
+    id: `76119596-1f8c-4df9-bb83-ce109ef8f3af`,
+    type: `Apartament`,
+    price: 180,
+    description: `Nice, cozy, warm big bed apartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    raiting: 100,
+    city: `Paris`,
   }
 ];
 
