@@ -6,7 +6,7 @@ const Action = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-const filterOffersByCity = (offers, city) => offers.filter((it) => it.city === city);
+const filterOffersByCity = (suggestions, city) => suggestions.filter((it) => it.city === city);
 
 const initialState = {
   city: City.PARIS.title,
