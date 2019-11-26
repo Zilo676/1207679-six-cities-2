@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly rendered 1`] = `
+<ul
+  className="locations__list tabs__list"
+>
+  <city
+    city="Paris"
+  />
+  <city
+    city="Colonge"
+  />
+  <city
+    city="Brussels"
+  />
+  <city
+    city="Amsterdam"
+  />
+  <city
+    city="Hamburg"
+  />
+  <city
+    city="Dusseldorf"
+  />
+</ul>
+`;
