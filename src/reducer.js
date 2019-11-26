@@ -37,4 +37,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, filterOffersByCity};
+export {reducer, ActionCreator, filterOffersByCity, Action};
