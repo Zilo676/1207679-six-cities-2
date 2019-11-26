@@ -47,7 +47,7 @@ class Map extends React.PureComponent {
     });
   }
 
-  _setMarkerGroup(){
+  _setMarkerGroup() {
     this._markerGroup = leaflet.layerGroup().addTo(this._map);
   }
 
@@ -77,9 +77,9 @@ class Map extends React.PureComponent {
 // TODO: Написать кастомный пропс с длинной массива в 2 элемента
 Map.propTypes = {
   coordinates: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.number.isRequired
-    ).isRequired
+      PropTypes.arrayOf(
+          PropTypes.number.isRequired
+      ).isRequired
   ).isRequired,
   city: PropTypes.shape({
     title: PropTypes.string.isRequired,

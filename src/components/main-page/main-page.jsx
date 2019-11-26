@@ -56,7 +56,7 @@ class MainPage extends React.PureComponent {
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex="0">
                     Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
+                    <svg className="places__sorting-arrow" width="7" height="4">
                       <use xlinkHref="#icon-arrow-select"></use>
                     </svg>
                   </span>
@@ -71,7 +71,7 @@ class MainPage extends React.PureComponent {
                 <OfferList offers={this.props.offers} />
               </section>
               <div className="cities__right-section">
-                <Map coordinates={this.props.offers.map((offer) => {debugger; return offer.coordinates})} city={City[this.props.city.toUpperCase()]} />
+                <Map coordinates={this.props.offers.map((offer) => offer.coordinates)} city={ City[this.props.city.toUpperCase()] } />
               </div>
             </div>
           </div>
@@ -79,20 +79,20 @@ class MainPage extends React.PureComponent {
       </div >
     );
   }
-};
+}
 
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(
-    PropTypes.shape(
-      {
-        id: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        raiting: PropTypes.number.isRequired,
-        coordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
-      }
-    ).isRequired
+      PropTypes.shape(
+          {
+            id: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            description: PropTypes.string.isRequired,
+            raiting: PropTypes.number.isRequired,
+            coordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
+          }
+      ).isRequired
   ).isRequired,
   getOffers: PropTypes.func,
   city: PropTypes.string,

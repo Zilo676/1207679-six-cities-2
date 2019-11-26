@@ -6,7 +6,9 @@ import {ActionCreator} from '../../reducer.js';
 
 const City = (props) => {
   const {city, onClick} = props;
-  return (<li className="locations__item" onClick={() => {onClick(city)}}>
+  return (<li className="locations__item" onClick={() => {
+    onClick(city);
+  }}>
     <a className="locations__item-link tabs__item" href="#">
       <span>{city}</span>
     </a>

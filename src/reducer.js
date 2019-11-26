@@ -6,11 +6,11 @@ const Action = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-const filterOffersByCity = (offers, city) => {return offers.filter((offer) => offer.city === city)};
+const filterOffersByCity = (offers, city) => offers.filter((it) => it.city === city);
 
 const initialState = {
-  city: City.AMSTERDAM.title,
-  offers: filterOffersByCity(offers, City.AMSTERDAM.title),
+  city: City.PARIS.title,
+  offers: filterOffersByCity(offers, City.PARIS.title),
 };
 
 const ActionCreator = {
@@ -37,4 +37,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, filterOffersByCity}
+export {reducer, ActionCreator, filterOffersByCity};
