@@ -6,7 +6,11 @@ import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
 
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
 import {City} from '../../mocks/cities.js';
+
+const OfferListWrapped = withActiveItem(OfferList);
 
 class MainPage extends React.PureComponent {
   constructor(props) {
@@ -68,7 +72,7 @@ class MainPage extends React.PureComponent {
                   </ul>
 
                 </form>
-                <OfferList offers={this.props.offers} />
+                <OfferListWrapped offers={this.props.offers} />
               </section>
               <div className="cities__right-section">
                 <Map coordinates={this.props.offers.map((offer) => offer.coordinates)} city={ City[this.props.city.toUpperCase()] } />
