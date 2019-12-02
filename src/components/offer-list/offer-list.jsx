@@ -24,19 +24,17 @@ const OfferList = (props) => {
     </div>
   );
 
-}
+};
 
 OfferList.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape(
-      {
-        id: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        raiting: PropTypes.number.isRequired,
-      }
-    ).isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    raiting: PropTypes.number.isRequired,
+  }
+  ).isRequired
   ).isRequired,
   onActiveItem: PropTypes.func.isRequired,
 };

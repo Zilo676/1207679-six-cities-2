@@ -15,6 +15,6 @@ const CityList = (props) => {
 
 CityList.propTypes = {
   onActiveItem: PropTypes.func.isRequired,
-}
+};
 
 export {CityList};

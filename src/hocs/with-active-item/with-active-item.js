@@ -7,7 +7,7 @@ const withActiveItem = (Component) => {
 
       this.state = {
         item: null,
-      }
+      };
 
       this._handleActiveItem = this._handleActiveItem.bind(this);
     }
@@ -18,11 +18,11 @@ const withActiveItem = (Component) => {
       });
     }
 
-    render(){
+    render() {
       return <Component
-      {...this.props}
-      onActiveItem={this._handleActiveItem}
-      />
+        {...this.props}
+        onActiveItem={this._handleActiveItem}
+      />;
     }
   }
 
