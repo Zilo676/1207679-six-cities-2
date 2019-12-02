@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
 const City = (props) => {
-  const {city, onClick} = props;
+  const {city, onClick, onActiveItem} = props;
   return (<li className="locations__item" onClick={() => {
+    onActiveItem(city);
     onClick(city);
   }}>
     <a className="locations__item-link tabs__item" href="#">
@@ -18,6 +19,7 @@ const City = (props) => {
 City.propTypes = {
   city: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onActiveItem: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

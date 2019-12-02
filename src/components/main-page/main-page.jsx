@@ -11,6 +11,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {City} from '../../mocks/cities.js';
 
 const OfferListWrapped = withActiveItem(OfferList);
+const CityListWrapped = withActiveItem(CityList);
 
 class MainPage extends React.PureComponent {
   constructor(props) {
@@ -48,7 +49,7 @@ class MainPage extends React.PureComponent {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CityList />
+              <CityListWrapped />
             </section>
           </div>
           <div className="cities">
