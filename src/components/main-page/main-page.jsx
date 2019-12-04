@@ -6,9 +6,10 @@ import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {getHotelsByCity, getCityLocation} from "../../reducer/hotels/selectors";
+import {getCurrentCity, getAllCities} from "../../reducer/city/selectors";
 
-import {City} from '../../mocks/cities.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 const OfferListWrapped = withActiveItem(OfferList);
 const CityListWrapped = withActiveItem(CityList);
@@ -49,7 +50,7 @@ class MainPage extends React.PureComponent {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CityListWrapped />
+              <CityListWrapped cities={this.props.cities} />
             </section>
           </div>
           <div className="cities">
@@ -76,7 +77,7 @@ class MainPage extends React.PureComponent {
                 <OfferListWrapped offers={this.props.offers} />
               </section>
               <div className="cities__right-section">
-                <Map coordinates={this.props.offers.map((offer) => offer.coordinates)} city={ City[this.props.city.toUpperCase()] } />
+                <Map location={this.props.offers.map((offer) => offer.location)} city={this.props.cityLocation} />
               </div>
             </div>
           </div>
@@ -87,25 +88,48 @@ class MainPage extends React.PureComponent {
 }
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(
-          {
-            id: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            description: PropTypes.string.isRequired,
-            raiting: PropTypes.number.isRequired,
-            coordinates: PropTypes.arrayOf(PropTypes.number.isRequired)
-          }
-      ).isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired,
+          })
+        }),
+        images: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired),
+        host: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+        description: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        })
+      }
+  ).isRequired
   ).isRequired,
   getOffers: PropTypes.func,
   city: PropTypes.string,
+  cities: PropTypes.array,
+  cityLocation: PropTypes.shape(),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.city,
-  offers: state.offers,
+  city: getCurrentCity(state),
+  offers: getHotelsByCity(state),
+  cities: getAllCities(state),
+  cityLocation: getCityLocation(state),
 });
 
 export {MainPage};

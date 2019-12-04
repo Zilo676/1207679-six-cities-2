@@ -15,7 +15,7 @@ const OfferList = (props) => {
             type={offer.type}
             price={offer.price}
             description={offer.description}
-            raiting={offer.raiting}
+            raiting={offer.rating}
             onOfferCardHover={() => onActiveItem(offer)}
           />
         );
@@ -27,13 +27,35 @@ const OfferList = (props) => {
 };
 
 OfferList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    raiting: PropTypes.number.isRequired,
-  }
+  offers: PropTypes.arrayOf(PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired,
+          })
+        }),
+        images: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired),
+        host: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+        description: PropTypes.string.isRequired,
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        })
+      }
   ).isRequired
   ).isRequired,
   onActiveItem: PropTypes.func.isRequired,

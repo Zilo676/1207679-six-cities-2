@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from "../../reducer/city/city";
 
 const City = (props) => {
   const {city, onClick, onActiveItem} = props;
@@ -25,7 +25,6 @@ City.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   onClick: (city) => {
     dispatch(ActionCreator.setCity(city));
-    dispatch(ActionCreator.getOffers(city));
   },
 });
 

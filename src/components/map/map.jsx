@@ -24,15 +24,24 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
+    let coordinates = [0, 0];
+    if (this.props.city) {
+      coordinates = [this.props.city.location.latitude, this.props.city.location.longitude];
+    }
     this._initializeMap();
-    this._setMapView(this.props.city.coordinates);
+    this._setMapView(coordinates);
     this._setMarkerGroup();
     this._setPoints();
   }
 
   componentDidUpdate() {
+
+    let coordinates = [0, 0];
+    if (this.props.city) {
+      coordinates = [this.props.city.location.latitude, this.props.city.location.longitude];
+    }
     this._markerGroup.clearLayers();
-    this._setMapView(this.props.city.coordinates);
+    this._setMapView(coordinates);
     this._setMarkerGroup();
     this._setPoints();
   }
@@ -61,10 +70,10 @@ class Map extends React.PureComponent {
   }
 
   _setPoints() {
-    const offersСoordinates = this.props.coordinates;
+    const offersСoordinates = this.props.location;
     offersСoordinates.forEach((it) => {
       leaflet
-        .marker(it, {icon})
+        .marker([it.latitude, it.longitude], {icon})
         .addTo(this._markerGroup);
     });
   }
@@ -74,16 +83,19 @@ class Map extends React.PureComponent {
   }
 }
 
-// TODO: Написать кастомный пропс с длинной массива в 2 элемента
 Map.propTypes = {
-  coordinates: PropTypes.arrayOf(
-      PropTypes.arrayOf(
-          PropTypes.number.isRequired
-      ).isRequired
-  ).isRequired,
+  location: PropTypes.arrayOf(PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  })),
   city: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    coordinates: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    })
   }),
 };
 
