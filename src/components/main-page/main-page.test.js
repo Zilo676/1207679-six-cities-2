@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import {MainPage} from './main-page.jsx';
-import {offers} from '../../mocks/offers.js';
 // import city from '../city/city.jsx';
 
 jest.mock(`../offer-list/offer-list.jsx`, () => `Offer list`);
@@ -15,6 +14,6 @@ const city = `Paris`;
 
 it.skip(`Correctly rendered`, () => {
 
-  const tree = renderer.create(<MainPage offers={offers} city={city}/>).toJSON();
+  const tree = renderer.create(<MainPage offers={[]} city={city}/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
