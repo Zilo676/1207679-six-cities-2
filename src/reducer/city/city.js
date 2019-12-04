@@ -2,7 +2,7 @@ const CITIES = [`Amsterdam`, `Brussels`, `Cologne`, `Dusseldorf`, `Hamburg`, `Pa
 
 const initialState = {
   cities: CITIES,
-  city: `Amsterdam`,
+  city: CITIES[0],
 };
 
 const ActionType = {
