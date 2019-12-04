@@ -80,7 +80,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "93%",
+                "width": "undefined%",
               }
             }
           />
@@ -183,7 +183,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "undefined%",
               }
             }
           />
@@ -286,7 +286,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "undefined%",
               }
             }
           />
@@ -389,7 +389,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />
@@ -492,7 +492,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />
@@ -595,7 +595,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />
@@ -698,7 +698,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />
@@ -801,7 +801,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />
@@ -904,7 +904,7 @@ exports[`Correctly rendered 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "undefined%",
               }
             }
           />

@@ -7,6 +7,6 @@ jest.mock(`../city/city.jsx`, () => `city`);
 
 it(`Correctly rendered`, () => {
 
-  const tree = renderer.create(<CityList />).toJSON();
+  const tree = renderer.create(<CityList cities={[]}/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
