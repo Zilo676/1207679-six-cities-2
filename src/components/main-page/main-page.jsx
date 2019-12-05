@@ -99,16 +99,22 @@ MainPage.propTypes = {
             zoom: PropTypes.number.isRequired,
           })
         }),
+        [`preview_image`]: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(PropTypes.string),
         title: PropTypes.string.isRequired,
+        [`is_favorite`]: PropTypes.bool.isRequired,
+        [`is_premium`]: PropTypes.bool.isRequired,
         rating: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         bedrooms: PropTypes.number.isRequired,
+        [`max_adults`]: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
         goods: PropTypes.arrayOf(PropTypes.string.isRequired),
         host: PropTypes.shape({
           id: PropTypes.number.isRequired,
+          [`is_pro`]: PropTypes.bool.isRequired,
           name: PropTypes.string.isRequired,
+          [`avatar_url`]: PropTypes.string.isRequired,
         }),
         description: PropTypes.string.isRequired,
         location: PropTypes.shape({
