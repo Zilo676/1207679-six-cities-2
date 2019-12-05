@@ -13,7 +13,7 @@ import {createAPI} from './api';
 import {Operation} from './reducer/hotels/hotels';
 
 const init = () => {
-  const api = createAPI((...args) => store.dispath(...args));
+  const api = createAPI((...args) => store.dispatch(...args));
 
   const store = createStore(
       reducer,
