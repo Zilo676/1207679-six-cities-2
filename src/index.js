@@ -10,7 +10,8 @@ import {compose} from 'recompose';
 import {App} from './components/app/app.jsx';
 import reducer from './reducer/index';
 import {createAPI} from './api';
-import {Operation} from './reducer/hotels/hotels';
+import {Operation as hotelsOperation} from './reducer/hotels/hotels';
+import {Operation as userOperation} from './reducer/user/user';
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
@@ -23,7 +24,8 @@ const init = () => {
       )
   );
 
-  store.dispatch(Operation.loadHotels());
+  store.dispatch(hotelsOperation.loadHotels());
+  store.dispatch(userOperation.checkAutorize());
 
   ReactDOM.render(<Provider store={store}>
     <App />
