@@ -4,6 +4,7 @@ exports[`Component is rendered correctly 1`] = `
 <div
   className="page page--gray page--login"
 >
+  header
   <main
     className="page__main page__main--login"
   >
@@ -73,10 +74,12 @@ exports[`Component is rendered correctly 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link"
-            href="#"
+            href="/"
+            onClick={[Function]}
           >
-            <span>
+            <span
+              className="locations__item-link"
+            >
               Amsterdam
             </span>
           </a>

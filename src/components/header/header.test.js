@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import {Header} from './header.jsx';
 
@@ -12,9 +13,11 @@ const user = {
 };
 
 it(`Component is rendered correctly`, () => {
-  const tree = renderer.create(<Header
-    user={user}
-  />).toJSON();
+  const tree = renderer.create(<BrowserRouter>
+    <Header
+      user={user}
+    />
+  </BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
