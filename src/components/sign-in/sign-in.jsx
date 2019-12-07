@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import Header from '../header/header.jsx';
 
 const SignIn = (props) => {
   const {onChange, email, password, onSubmit} = props;
   return (
     <div className="page page--gray page--login">
+      <Header />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -35,9 +39,7 @@ const SignIn = (props) => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+              <Link to='/' ><span className="locations__item-link">Amsterdam</span></Link>
             </div>
           </section>
         </div>

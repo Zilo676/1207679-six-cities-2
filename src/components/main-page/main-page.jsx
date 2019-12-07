@@ -5,19 +5,17 @@ import {connect} from 'react-redux';
 import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
-import {SignIn} from '../sign-in/sign-in.jsx';
+
 import Header from '../header/header.jsx';
 
 import {getHotelsByCity, getCityLocation} from "../../reducer/hotels/selectors";
 import {getCurrentCity, getAllCities} from "../../reducer/city/selectors";
-import {getAuthorizationStatus} from "../../reducer/user/selectors";
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 
 const OfferListWrapped = withActiveItem(OfferList);
 const CityListWrapped = withActiveItem(CityList);
-const SignInWrapped = withSignIn(SignIn);
+
 
 class MainPage extends React.PureComponent {
   constructor(props) {
@@ -26,14 +24,10 @@ class MainPage extends React.PureComponent {
   }
 
   render() {
-    const {isAuthorizationRequired} = this.props;
     return (
       <div className="page page--gray page--main" >
-
         <Header />
-
-        {isAuthorizationRequired && <SignInWrapped />}
-        {!isAuthorizationRequired && <main className="page__main page__main--index">
+        <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
@@ -68,7 +62,7 @@ class MainPage extends React.PureComponent {
               </div>
             </div>
           </div>
-        </main>}
+        </main>
       </div >
     );
   }
@@ -116,7 +110,6 @@ MainPage.propTypes = {
   city: PropTypes.string,
   cities: PropTypes.array,
   cityLocation: PropTypes.shape(),
-  isAuthorizationRequired: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -124,7 +117,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: getHotelsByCity(state),
   cities: getAllCities(state),
   cityLocation: getCityLocation(state),
-  isAuthorizationRequired: getAuthorizationStatus(state),
 });
 
 export {MainPage};

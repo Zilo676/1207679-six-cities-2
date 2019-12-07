@@ -1,12 +1,6 @@
 const initialState = {
   isAuthorizationRequired: false,
-  user: {
-    id: 1,
-    email: `Sign In`,
-    name: `Sign IN`,
-    [`avatar_url`]: ``,
-    [`is_pro`]: false
-  },
+  user: {},
 };
 
 const ActionType = {
