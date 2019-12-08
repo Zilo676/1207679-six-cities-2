@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import {Operation} from '../../reducer/favorites/favorites';
 
 const OfferCard = (props) => {
-  const {offer, onOfferCardHover} = props;
+  const {offer, onOfferCardHover, onClick} = props;
   const handleOfferCardHover = (evt) => {
     evt.preventDefault();
     onOfferCardHover(offer);
@@ -24,8 +27,11 @@ const OfferCard = (props) => {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
+          <button className="place-card__bookmark-button button" type="button" onClick={(evt) => {
+            evt.preventDefault();
+            onClick(offer.id, !offer[`is_favorite`] | 0);
+          }}>
+            <svg className="place-card__bookmark-icon" width="18" height="19" style= {{fill: offer[`is_favorite`] ? `#4481c3` : `none`}}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -84,6 +90,15 @@ OfferCard.propTypes = {
       }
   ),
   onOfferCardHover: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (hotelId, status) =>{
+    dispatch(Operation.changeFavoriteStatus(hotelId, status));
+  },
+});
+
 export {OfferCard};
+
+export default connect(null, mapDispatchToProps)(OfferCard);

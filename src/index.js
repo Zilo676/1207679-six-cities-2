@@ -14,6 +14,7 @@ import reducer from './reducer/index';
 import {createAPI} from './api';
 import {Operation as hotelsOperation} from './reducer/hotels/hotels';
 import {Operation as userOperation} from './reducer/user/user';
+import {Operation as favoritesOperation} from './reducer/favorites/favorites';
 
 const init = () => {
   const history = createBrowserHistory();
@@ -28,6 +29,7 @@ const init = () => {
   );
 
   store.dispatch(hotelsOperation.loadHotels());
+  store.dispatch(favoritesOperation.loadFavorites());
   store.dispatch(userOperation.checkAutorize());
 
   ReactDOM.render(<Provider store={store}>
