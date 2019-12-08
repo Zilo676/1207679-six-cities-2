@@ -62,6 +62,8 @@ const offers = [
   }
 ];
 
+jest.mock(`../offer-card/offer-card.jsx`, () => () => `offer-card`);
+
 it(`Correctly rendered`, () => {
   const tree = renderer.create(<OfferList offers={offers}/>).toJSON();
   expect(tree).toMatchSnapshot();
