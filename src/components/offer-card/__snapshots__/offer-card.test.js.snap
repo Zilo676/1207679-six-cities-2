@@ -3,7 +3,7 @@
 exports[`Correctly rendered 1`] = `
 <article
   className="cities__place-card place-card"
-  onMouseEnter={[Function]}
+  onClick={[Function]}
 >
   <div
     className="place-card__mark"
@@ -98,9 +98,10 @@ exports[`Correctly rendered 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
-        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
+        Beautiful & luxurious studio at great location
       </a>
     </h2>
     <p

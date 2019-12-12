@@ -1,16 +1,14 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
 
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {OfferDetails} from './offer-details.jsx';
 
-import {OfferCard} from './offer-card.jsx';
-// import {offers} from '../../mocks/offers.js';
+jest.mock(`../not-load/not-load.jsx`, () => `Not load`);
+jest.mock(`../header/header.jsx`, () => `Not load`);
 
-Enzyme.configure({adapter: new Adapter()});
 
-it(`Card return value and invokes callback`, () => {
-  const clickHandler = jest.fn();
-  const event = {preventDefault: () => {}};
+it(`Correctly rendered`, () => {
+
   const offer = {
     id: 1,
     city: {
@@ -45,15 +43,7 @@ it(`Card return value and invokes callback`, () => {
       zoom: 8
     }
   };
-  const offerCard = shallow(<OfferCard
-    offer={offer}
-    onOfferCardHover={clickHandler}
-    onClick={clickHandler} />);
 
-  const card = offerCard.find(`.place-card`);
-  card.simulate(`click`, event);
-
-  expect(clickHandler).toHaveBeenCalled();
-  expect(clickHandler).toHaveBeenCalledWith(offer);
+  const tree = renderer.create(<OfferDetails offer={offer} id={25} />).toJSON();
+  expect(tree).toMatchSnapshot();
 });
-

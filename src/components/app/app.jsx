@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 
 import MainPage from '../main-page/main-page.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
-import OfferDetails from '../offer-details/offer-details.jsx'
+import OfferDetails from '../offer-details/offer-details.jsx';
 
 import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 

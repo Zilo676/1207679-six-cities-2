@@ -1,12 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import {OfferCard} from './offer-card.jsx';
 
 it(`Correctly rendered`, () => {
   const onOfferCardHover = () => {};
 
-  const tree = renderer.create(<OfferCard
+  const tree = renderer.create(<BrowserRouter><OfferCard
     offer={{
       id: 1,
       city: {
@@ -42,7 +43,8 @@ it(`Correctly rendered`, () => {
       }
     }}
     onOfferCardHover={onOfferCardHover}
-  />).toJSON();
+    onClick={onOfferCardHover}
+  /></BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

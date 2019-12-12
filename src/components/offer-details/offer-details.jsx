@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Header from "../header/header.jsx";
 import {NotLoad} from '../not-load/not-load.jsx';
 
-import {getHotelById} from '../../reducer/hotels/selectors.js'
+import {getHotelById} from '../../reducer/hotels/selectors.js';
 
 const OfferDetails = (props) => {
 
@@ -87,7 +87,7 @@ const OfferDetails = (props) => {
                 {host[`is_pro`] &&
                   <span className="property__user-status">
                     Pro
-                </span>
+                  </span>
                 }
               </div>
               <div className="property__description">
@@ -107,40 +107,40 @@ const OfferDetails = (props) => {
 OfferDetails.propTypes = {
   id: PropTypes.number.isRequired,
   offer: PropTypes.shape(
-    {
-      id: PropTypes.number.isRequired,
-      city: PropTypes.shape({
-        name: PropTypes.string.isRequired,
+      {
+        id: PropTypes.number.isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          location: PropTypes.shape({
+            latitude: PropTypes.number.isRequired,
+            longitude: PropTypes.number.isRequired,
+            zoom: PropTypes.number.isRequired,
+          })
+        }),
+        [`preview_image`]: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string.isRequired,
+        [`is_favorite`]: PropTypes.bool.isRequired,
+        [`is_premium`]: PropTypes.bool.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        bedrooms: PropTypes.number.isRequired,
+        [`max_adults`]: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        goods: PropTypes.arrayOf(PropTypes.string.isRequired),
+        host: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          [`is_pro`]: PropTypes.bool.isRequired,
+          name: PropTypes.string.isRequired,
+          [`avatar_url`]: PropTypes.string.isRequired,
+        }),
+        description: PropTypes.string.isRequired,
         location: PropTypes.shape({
           latitude: PropTypes.number.isRequired,
           longitude: PropTypes.number.isRequired,
           zoom: PropTypes.number.isRequired,
         })
-      }),
-      [`preview_image`]: PropTypes.string.isRequired,
-      images: PropTypes.arrayOf(PropTypes.string),
-      title: PropTypes.string.isRequired,
-      [`is_favorite`]: PropTypes.bool.isRequired,
-      [`is_premium`]: PropTypes.bool.isRequired,
-      rating: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      bedrooms: PropTypes.number.isRequired,
-      [`max_adults`]: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      goods: PropTypes.arrayOf(PropTypes.string.isRequired),
-      host: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        [`is_pro`]: PropTypes.bool.isRequired,
-        name: PropTypes.string.isRequired,
-        [`avatar_url`]: PropTypes.string.isRequired,
-      }),
-      description: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      })
-    }
+      }
   ),
 };
 

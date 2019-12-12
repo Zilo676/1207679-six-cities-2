@@ -6,6 +6,6 @@ const NotLoad = () => {
       <span>NOT LOADING</span>
     </div>
   );
-}
+};
 
 export {NotLoad};
