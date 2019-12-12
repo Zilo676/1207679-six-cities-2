@@ -6,9 +6,9 @@ import NameSpace from '../name-spaces';
 
 const NAME_SPACE = NameSpace.HOTELS;
 
-const getHotels = (state) => {
-  return state[NAME_SPACE].hotels;
-};
+const getHotels = (state) => state[NAME_SPACE].hotels;
+
+const getHotelById = (state, props) => state[NAME_SPACE].hotels.find((hotel) => hotel.id === (+props.id));
 
 const getHotelsByCity = createSelector(
     getHotels,
@@ -26,11 +26,11 @@ const getCityLocation = createSelector(
       }
       return null;
     }
-
 );
 
 export {
   getHotels,
+  getHotelById,
   getHotelsByCity,
   getCityLocation,
 };
