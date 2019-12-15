@@ -14,16 +14,22 @@ const offers = [
         zoom: 10
       }
     },
+    previewImage: `img/1.png`,
     images: [`img/1.png`, `img/2.png`],
     title: `Beautiful & luxurious studio at great location`,
+    isFavorite: false,
+    isPremium: false,
     rating: 4.8,
     type: `apartment`,
     bedrooms: 3,
+    maxAdults: 4,
     price: 120,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     host: {
       id: 3,
+      isPro: true,
       name: `Angelina`,
+      avatarUrl: `img/1.png`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     location: {
@@ -42,16 +48,22 @@ const offers = [
         zoom: 10
       }
     },
+    previewImage: `img/1.png`,
     images: [`img/1.png`, `img/2.png`],
     title: `Beautiful & luxurious studio at great location`,
+    isFavorite: false,
+    isPremium: false,
     rating: 4.8,
     type: `apartment`,
     bedrooms: 3,
+    maxAdults: 4,
     price: 120,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     host: {
       id: 3,
+      isPro: true,
       name: `Angelina`,
+      avatarUrl: `img/1.png`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     location: {
@@ -65,6 +77,9 @@ const offers = [
 jest.mock(`../offer-card/offer-card.jsx`, () => () => `offer-card`);
 
 it(`Correctly rendered`, () => {
-  const tree = renderer.create(<OfferList offers={offers}/>).toJSON();
+  const tree = renderer.create(<OfferList
+    offers={offers}
+    onActiveItem={() => {}}
+  />).toJSON();
   expect(tree).toMatchSnapshot();
 });

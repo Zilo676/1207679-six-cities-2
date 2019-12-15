@@ -6,7 +6,10 @@ import {CityList} from './city-list.jsx';
 jest.mock(`../city/city.jsx`, () => `city`);
 
 it(`Correctly rendered`, () => {
-
-  const tree = renderer.create(<CityList cities={[]}/>).toJSON();
+  const mockFunc = jest.fn();
+  const tree = renderer.create(<CityList
+    cities={[]}
+    onActiveItem={mockFunc}
+  />).toJSON();
   expect(tree).toMatchSnapshot();
 });

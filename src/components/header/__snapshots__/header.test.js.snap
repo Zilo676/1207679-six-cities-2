@@ -15,9 +15,11 @@ exports[`Component is rendered correctly 1`] = `
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
+          onClick={[Function]}
         >
           <img
-            alt="img/logo.svg"
+            alt="/img/logo.svg"
             className="header__logo"
             height="41"
             src="/img/logo.svg"
@@ -46,7 +48,7 @@ exports[`Component is rendered correctly 1`] = `
                   alt=""
                   className="user__avatar"
                   height="41"
-                  src="https://htmlacademy-react-2.appspot.com/six-cities"
+                  src="https://htmlacademy-react-2.appspot.com/six-citiesundefined"
                   width="81"
                 />
               </div>

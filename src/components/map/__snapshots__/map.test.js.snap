@@ -2,7 +2,7 @@
 
 exports[`Correctly rendered 1`] = `
 <div
-  className="cities__map map"
+  className="abc__map map"
   id="map"
 />
 `;

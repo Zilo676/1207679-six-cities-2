@@ -29,7 +29,11 @@ const city = {
 const createNodeMock = () => document.createElement(`div`);
 
 it(`Correctly rendered`, () => {
-  const tree = renderer.create(<Map location={coordinates} city={city} />, {createNodeMock}).toJSON();
+  const tree = renderer.create(<Map
+    location={coordinates}
+    city={city}
+    cssClass={`abc`}
+  />, {createNodeMock}).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
