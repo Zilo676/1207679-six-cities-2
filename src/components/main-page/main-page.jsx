@@ -22,7 +22,6 @@ class MainPage extends React.PureComponent {
   }
 
   render() {
-    debugger;
     return (
       <div className="page page--gray page--main" >
         <Header />

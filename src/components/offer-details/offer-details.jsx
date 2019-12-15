@@ -16,7 +16,7 @@ const OfferDetails = (props) => {
 
   if (props.offer) {
     const {onClick, id, nearOffers} = props;
-    const {description, rating, type, bedrooms, price, goods, images, host , isPremium, maxAdults} = props.offer;
+    const {description, rating, type, bedrooms, price, goods, images, host, isPremium, maxAdults} = props.offer;
 
     return (
       <div className="page" onScroll={() => onClick(id)}>
