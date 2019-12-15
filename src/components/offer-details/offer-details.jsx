@@ -4,18 +4,24 @@ import {connect} from 'react-redux';
 
 import Header from "../header/header.jsx";
 import {NotLoad} from '../not-load/not-load.jsx';
+import {Rating} from '../rating/rating.jsx';
 
-import {getHotelById} from '../../reducer/hotels/selectors.js';
+import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
+import {Operation} from '../../reducer/comments/comments';
+import ReviewList from '../review-list/review-list.jsx';
+import {OfferList} from '../offer-list/offer-list.jsx';
+import {Map} from '../map/map.jsx';
 
 const OfferDetails = (props) => {
 
   if (props.offer) {
+    const {onClick, id, nearOffers} = props;
     const {description, rating, type, bedrooms, price, goods, images, host} = props.offer;
     const isPremium = props.offer[`is_premium`];
     const maxAdults = props.offer[`max_adults`];
 
     return (
-      <div className="page">
+      <div className="page" onScroll={() => onClick(id)}>
         <Header />
 
         <div className="property__gallery-container container">
@@ -44,9 +50,7 @@ const OfferDetails = (props) => {
 
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                {/* TODO: add rounding */}
-                <span style={{width: `96%`}}></span>
-                <span className="visually-hidden">Rating</span>
+                <Rating rating={rating}/>
               </div>
               <span className="property__rating-value rating__value">{rating}</span>
             </div>
@@ -75,7 +79,7 @@ const OfferDetails = (props) => {
               </ul>
             </div>
 
-            <div className="property__host">
+            <div className="property__host" onClick={()=>onClick(id)}>
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
@@ -96,6 +100,13 @@ const OfferDetails = (props) => {
                 </p>
               </div>
             </div>
+
+            <ReviewList />
+
+            <Map location={nearOffers.map((it) => it.location)} city={props.cityLocation} cssClass={`property`} />
+
+            <OfferList onActiveItem={() => {}} offers={nearOffers} />
+
           </div>
         </div>
       </div>
@@ -142,13 +153,24 @@ OfferDetails.propTypes = {
         })
       }
   ),
+  onClick: PropTypes.func,
+  nearOffers: PropTypes.array,
+  cityLocation: PropTypes.shape(),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offer: getHotelById(state, ownProps),
+  nearOffers: getRandomHotels(state),
+  cityLocation: getCityLocation(state),
 }
 );
 
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (hotelId) => {
+    dispatch(Operation.loadComments(hotelId));
+  }
+});
+
 export {OfferDetails};
 
-export default connect(mapStateToProps, null)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);

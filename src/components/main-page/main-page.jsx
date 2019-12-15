@@ -58,7 +58,7 @@ class MainPage extends React.PureComponent {
                 <OfferListWrapped offers={this.props.offers} />
               </section>
               <div className="cities__right-section">
-                <Map location={this.props.offers.map((offer) => offer.location)} city={this.props.cityLocation} />
+                <Map location={this.props.offers.map((offer) => offer.location)} city={this.props.cityLocation} cssClass={`cities`}/>
               </div>
             </div>
           </div>

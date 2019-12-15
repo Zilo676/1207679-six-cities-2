@@ -3,6 +3,7 @@ const NameSpace = {
   CITY: `CITY`,
   HOTELS: `HOTELS`,
   FAVORITES: `FAVORITES`,
+  COMMENTS: `COMMENTS`,
 };
 
 export default NameSpace;

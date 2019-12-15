@@ -1,34 +1,34 @@
 const initialState = {
-  hotels: [],
+  comments: [],
 };
 
 const ActionType = {
-  LOAD_HOTELS: `LOAD_HOTELS`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
 };
 
 const ActionCreator = {
-  loadHotels: (hotels) => {
+  loadComments: (comments) => {
     return {
-      type: ActionType.LOAD_HOTELS,
-      payload: hotels,
+      type: ActionType.LOAD_COMMENTS,
+      payload: comments
     };
   },
 };
 
 const Operation = {
-  loadHotels: () => (dispatch, _getState, api) => {
-    return api.get(`/hotels`)
+  loadComments: (hotelId) => (dispatch, _getState, api) => {
+    return api.get(`/comments/${hotelId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadHotels(response.data));
+        dispatch(ActionCreator.loadComments(response.data));
       });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_HOTELS:
+    case ActionType.LOAD_COMMENTS:
       return Object.assign({}, state, {
-        hotels: action.payload,
+        comments: action.payload,
       });
   }
 

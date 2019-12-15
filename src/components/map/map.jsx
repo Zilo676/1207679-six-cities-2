@@ -4,7 +4,7 @@ import leaflet from 'leaflet';
 
 const MapConfiguration = {
   ZOOM: 12,
-  ICON_URL: `img/pin.svg`,
+  ICON_URL: `/img/pin.svg`,
   ICON_SIZE: [30, 30],
   TILE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   TILE_ATTRIBUTE: `&copy; <a href="htps://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
@@ -79,11 +79,12 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <div className="cities__map map" id="map" ref={this._mapRef} />;
+    return <div className={`${this.props.cssClass}__map map`} id="map" ref={this._mapRef} />;
   }
 }
 
 Map.propTypes = {
+  cssClass: PropTypes.string.isRequired,
   location: PropTypes.arrayOf(PropTypes.shape({
     latitude: PropTypes.number.isRequired,
     longitude: PropTypes.number.isRequired,

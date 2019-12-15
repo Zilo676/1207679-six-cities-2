@@ -28,8 +28,31 @@ const getCityLocation = createSelector(
     }
 );
 
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+
+const getRandomHotelsFactory = (amount) => {
+  return createSelector(
+      getHotelsByCity,
+      (hotels) => {
+        let randomHotels = [];
+        for (let i = 0; i < amount; i++) {
+          const index = getRandomInt(hotels.length);
+          randomHotels.push(hotels[index]);
+        }
+
+        return randomHotels;
+      }
+  );
+};
+
+const getRandomHotels = createSelector(
+    getRandomHotelsFactory(3),
+    (hotels) => hotels
+);
+
 export {
   getHotels,
+  getRandomHotels,
   getHotelById,
   getHotelsByCity,
   getCityLocation,

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {Operation} from '../../reducer/favorites/favorites';
+// import {Operation as commentsOperation} from "../../reducer/comments/comments";
 
 const OfferCard = (props) => {
   const {offer, onOfferCardHover, onClick} = props;
@@ -44,7 +45,7 @@ const OfferCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2 className="place-card__name" >
           <Link to={`/offer/${+offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
