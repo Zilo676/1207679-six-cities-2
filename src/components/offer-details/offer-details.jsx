@@ -2,23 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Header from "../header/header.jsx";
+import Header from '../header/header.jsx';
 import {NotLoad} from '../not-load/not-load.jsx';
 import {Rating} from '../rating/rating.jsx';
-
-import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
-import {Operation} from '../../reducer/comments/comments';
 import ReviewList from '../review-list/review-list.jsx';
 import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
+
+import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
+import {Operation} from '../../reducer/comments/comments';
 
 const OfferDetails = (props) => {
 
   if (props.offer) {
     const {onClick, id, nearOffers} = props;
-    const {description, rating, type, bedrooms, price, goods, images, host} = props.offer;
-    const isPremium = props.offer[`is_premium`];
-    const maxAdults = props.offer[`max_adults`];
+    const {description, rating, type, bedrooms, price, goods, images, host , isPremium, maxAdults} = props.offer;
 
     return (
       <div className="page" onScroll={() => onClick(id)}>
@@ -83,12 +81,12 @@ const OfferDetails = (props) => {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={`/` + host[`avatar_url`]} width="74" height="74" alt="Host avatar" />
+                  <img className="property__avatar user__avatar" src={`/` + host.avatarUrl} width="74" height="74" alt="Host avatar" />
                 </div>
                 <span className="property__user-name">
                   {host.name}
                 </span>
-                {host[`is_pro`] &&
+                {host.isPro &&
                   <span className="property__user-status">
                     Pro
                   </span>
@@ -128,22 +126,22 @@ OfferDetails.propTypes = {
             zoom: PropTypes.number.isRequired,
           })
         }),
-        [`preview_image`]: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(PropTypes.string),
         title: PropTypes.string.isRequired,
-        [`is_favorite`]: PropTypes.bool.isRequired,
-        [`is_premium`]: PropTypes.bool.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
         rating: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         bedrooms: PropTypes.number.isRequired,
-        [`max_adults`]: PropTypes.number.isRequired,
+        maxAdults: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
         goods: PropTypes.arrayOf(PropTypes.string.isRequired),
         host: PropTypes.shape({
           id: PropTypes.number.isRequired,
-          [`is_pro`]: PropTypes.bool.isRequired,
+          isPro: PropTypes.bool.isRequired,
           name: PropTypes.string.isRequired,
-          [`avatar_url`]: PropTypes.string.isRequired,
+          avatarUrl: PropTypes.string.isRequired,
         }),
         description: PropTypes.string.isRequired,
         location: PropTypes.shape({

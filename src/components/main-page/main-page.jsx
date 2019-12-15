@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {OfferList} from '../offer-list/offer-list.jsx';
 import {Map} from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
-
 import Header from '../header/header.jsx';
 
 import {getHotelsByCity, getCityLocation} from "../../reducer/hotels/selectors";
@@ -16,7 +15,6 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 const OfferListWrapped = withActiveItem(OfferList);
 const CityListWrapped = withActiveItem(CityList);
 
-
 class MainPage extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -24,6 +22,7 @@ class MainPage extends React.PureComponent {
   }
 
   render() {
+    debugger;
     return (
       <div className="page page--gray page--main" >
         <Header />
@@ -80,22 +79,22 @@ MainPage.propTypes = {
             zoom: PropTypes.number.isRequired,
           })
         }),
-        [`preview_image`]: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(PropTypes.string),
         title: PropTypes.string.isRequired,
-        [`is_favorite`]: PropTypes.bool.isRequired,
-        [`is_premium`]: PropTypes.bool.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
         rating: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         bedrooms: PropTypes.number.isRequired,
-        [`max_adults`]: PropTypes.number.isRequired,
+        maxAdults: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
         goods: PropTypes.arrayOf(PropTypes.string.isRequired),
         host: PropTypes.shape({
           id: PropTypes.number.isRequired,
-          [`is_pro`]: PropTypes.bool.isRequired,
+          isPro: PropTypes.bool.isRequired,
           name: PropTypes.string.isRequired,
-          [`avatar_url`]: PropTypes.string.isRequired,
+          avatarUrl: PropTypes.string.isRequired,
         }),
         description: PropTypes.string.isRequired,
         location: PropTypes.shape({

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from "../../reducer/city/city";
+import {ActionCreator} from '../../reducer/city/city';
 
 const City = (props) => {
   const {city, onClick, onActiveItem} = props;
+
   return (<li className="locations__item" onClick={() => {
     onActiveItem(city);
     onClick(city);

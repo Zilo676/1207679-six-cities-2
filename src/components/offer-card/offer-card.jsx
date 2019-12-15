@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {Operation} from '../../reducer/favorites/favorites';
-// import {Operation as commentsOperation} from "../../reducer/comments/comments";
+import {Rating} from '../rating/rating.jsx';
 
 const OfferCard = (props) => {
   const {offer, onOfferCardHover, onClick} = props;
@@ -16,11 +16,11 @@ const OfferCard = (props) => {
   return (
     <article className="cities__place-card place-card" onClick={handleOfferCardHover}>
       <div className="place-card__mark" >
-        <span>{offer[`is_premium`] ? `Premium` : `Not premium`}</span>
+        <span>{offer.isPremium ? `Premium` : `Not premium`}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={offer[`preview_image`]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -31,9 +31,9 @@ const OfferCard = (props) => {
           </div>
           <button className="place-card__bookmark-button button" type="button" onClick={(evt) => {
             evt.preventDefault();
-            onClick(offer.id, !offer[`is_favorite`] | 0);
+            onClick(offer.id, !offer.isFavorite | 0);
           }}>
-            <svg className="place-card__bookmark-icon" width="18" height="19" style= {{fill: offer[`is_favorite`] ? `#4481c3` : `none`}}>
+            <svg className="place-card__bookmark-icon" width="18" height="19" style= {{fill: offer.isFavorite ? `#4481c3` : `none`}}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -41,8 +41,7 @@ const OfferCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: offer.rating + `%`}}></span>
-            <span className="visually-hidden">Rating</span>
+            <Rating rating={offer.rating}/>
           </div>
         </div>
         <h2 className="place-card__name" >
@@ -66,22 +65,22 @@ OfferCard.propTypes = {
             zoom: PropTypes.number.isRequired,
           })
         }),
-        [`preview_image`]: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(PropTypes.string),
         title: PropTypes.string.isRequired,
-        [`is_favorite`]: PropTypes.bool.isRequired,
-        [`is_premium`]: PropTypes.bool.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        isPremium: PropTypes.bool.isRequired,
         rating: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         bedrooms: PropTypes.number.isRequired,
-        [`max_adults`]: PropTypes.number.isRequired,
+        maxAdults: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
         goods: PropTypes.arrayOf(PropTypes.string.isRequired),
         host: PropTypes.shape({
           id: PropTypes.number.isRequired,
-          [`is_pro`]: PropTypes.bool.isRequired,
+          isPro: PropTypes.bool.isRequired,
           name: PropTypes.string.isRequired,
-          [`avatar_url`]: PropTypes.string.isRequired,
+          avatarUrl: PropTypes.string.isRequired,
         }),
         description: PropTypes.string.isRequired,
         location: PropTypes.shape({
