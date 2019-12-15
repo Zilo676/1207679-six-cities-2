@@ -6,13 +6,13 @@ const BASE_URL = `https://htmlacademy-react-2.appspot.com/six-cities`;
 const toCamel = (s) => {
   return s.replace(/([-_][a-z])/ig, (it) => {
     return it.toUpperCase()
-      .replace('-', '')
-      .replace('_', '');
+      .replace(`-`, ``)
+      .replace(`_`, ``);
   });
 };
 
 const keysToCamel = (object) => {
-  if (object === Object(object) && !Array.isArray(object) && typeof object !== 'function') {
+  if (object === Object(object) && !Array.isArray(object) && typeof object !== `function`) {
     const n = {};
 
     Object.keys(object).forEach((key) => {
@@ -26,7 +26,7 @@ const keysToCamel = (object) => {
   }
 
   return object;
-}
+};
 
 const createAPI = (dispatch, history) => {
   const api = axios.create({
@@ -35,7 +35,7 @@ const createAPI = (dispatch, history) => {
     withCredentials: true,
   });
 
-  const onSuccess = (response) => {return Object.assign({}, response, {data: keysToCamel(response.data)})};
+  const onSuccess = (response) => (Object.assign({}, response, {data: keysToCamel(response.data)}));
   const onFail = (err) => {
     if (err.response.status === 403 || err.response.status === 401) {
       history.push(`/login`);
