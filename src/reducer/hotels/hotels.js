@@ -1,9 +1,18 @@
+const SortType = {
+  POPULAR: `Popular`,
+  PRICE_ASC: `Price: low to high`,
+  PRICE_DESC: `Price: high to low`,
+  RATING_DESC: `Top rated first`
+}
+
 const initialState = {
   hotels: [],
+  sortType: SortType.POPULAR,
 };
 
 const ActionType = {
   LOAD_HOTELS: `LOAD_HOTELS`,
+  SET_SORT_TYPE: `SET_SORT_TYPE`,
 };
 
 const ActionCreator = {
@@ -13,6 +22,12 @@ const ActionCreator = {
       payload: hotels,
     };
   },
+  setSortType: (sortType) => {
+    return {
+      type: ActionType.SET_SORT_TYPE,
+      payload: sortType,
+    };
+  }
 };
 
 const Operation = {
@@ -30,12 +45,17 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         hotels: action.payload,
       });
+    case ActionType.SET_SORT_TYPE:
+      return Object.assign({}, state, {
+        sortType: action.payload,
+      });
   }
 
   return state;
 };
 
 export {
+  SortType,
   ActionCreator,
   ActionType,
   Operation,

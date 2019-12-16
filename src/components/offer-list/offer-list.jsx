@@ -5,10 +5,9 @@ import OfferCard from '../offer-card/offer-card.jsx';
 
 const OfferList = (props) => {
   const {offers, onActiveItem} = props;
-
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => {
+      {offers.slice().reverse().map((offer) => {
         return (
           <OfferCard
             key={offer.id}
@@ -62,6 +61,7 @@ OfferList.propTypes = {
   ).isRequired
   ).isRequired,
   onActiveItem: PropTypes.func.isRequired,
+  sortType: PropTypes.string,
 };
 
 export {OfferList};
