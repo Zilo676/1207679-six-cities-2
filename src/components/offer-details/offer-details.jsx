@@ -7,10 +7,14 @@ import {NotLoad} from '../not-load/not-load.jsx';
 import {Rating} from '../rating/rating.jsx';
 import ReviewList from '../review-list/review-list.jsx';
 import {OfferList} from '../offer-list/offer-list.jsx';
-import {Map} from '../map/map.jsx';
+import Map from '../map/map.jsx';
 
 import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
 import {Operation} from '../../reducer/comments/comments';
+
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
+const OfferListWrapped = withActiveItem(OfferList);
 
 const OfferDetails = (props) => {
 
@@ -103,7 +107,7 @@ const OfferDetails = (props) => {
 
             <Map location={nearOffers.map((it) => it.location)} city={props.cityLocation} cssClass={`property`} />
 
-            <OfferList onActiveItem={() => {}} offers={nearOffers} />
+            <OfferListWrapped offers={nearOffers} />
 
           </div>
         </div>

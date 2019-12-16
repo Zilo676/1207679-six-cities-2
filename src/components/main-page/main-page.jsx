@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {OfferList} from '../offer-list/offer-list.jsx';
-import {Map} from '../map/map.jsx';
+import Map from '../map/map.jsx';
 import {CityList} from '../city-list/city-list.jsx';
 import Header from '../header/header.jsx';
 import SortForm from '../sort-form/sort-form.jsx';

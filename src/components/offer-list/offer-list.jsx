@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import OfferCard from '../offer-card/offer-card.jsx';
 
 const OfferList = (props) => {
-  const {offers, onActiveItem} = props;
+  const {offers, onActiveItem , onNotActiveItem} = props;
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.slice().reverse().map((offer) => {
@@ -13,6 +13,7 @@ const OfferList = (props) => {
             key={offer.id}
             offer={offer}
             onOfferCardHover={() => onActiveItem(offer)}
+            onOfferCardLeave={onNotActiveItem}
           />
         );
       })
@@ -61,7 +62,7 @@ OfferList.propTypes = {
   ).isRequired
   ).isRequired,
   onActiveItem: PropTypes.func.isRequired,
-  sortType: PropTypes.string,
+  onNotActiveItem: PropTypes.func.isRequired,
 };
 
 export {OfferList};

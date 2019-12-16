@@ -7,14 +7,14 @@ import {Operation} from '../../reducer/favorites/favorites';
 import {Rating} from '../rating/rating.jsx';
 
 const OfferCard = (props) => {
-  const {offer, onOfferCardHover, onClick} = props;
+  const {offer, onOfferCardHover, onClick, onOfferCardLeave} = props;
   const handleOfferCardHover = (evt) => {
     evt.preventDefault();
     onOfferCardHover(offer);
   };
 
   return (
-    <article className="cities__place-card place-card" onClick={handleOfferCardHover}>
+    <article className="cities__place-card place-card" onMouseEnter={handleOfferCardHover} onMouseLeave={onOfferCardLeave}>
       <div className="place-card__mark" >
         <span>{offer.isPremium ? `Premium` : `Not premium`}</span>
       </div>
@@ -91,6 +91,7 @@ OfferCard.propTypes = {
       }
   ),
   onOfferCardHover: PropTypes.func.isRequired,
+  onOfferCardLeave: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
