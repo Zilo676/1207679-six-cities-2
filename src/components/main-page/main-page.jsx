@@ -21,7 +21,8 @@ const CityListWrapped = withActiveItem(CityList);
 const SortFormWrapped = withSort(SortForm);
 
 const MainPage = (props) => {
-
+  const {offers, city, cityLocation} = props;
+  const placesMessage = (offers && offers.length > 0) ? `${offers.length} places to stay in ${city}` : `No places to stay available`;
   return (
     <div className="page page--gray page--main" >
       <Header />
@@ -36,12 +37,12 @@ const MainPage = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props.offers.length} places to stay in {props.city}</b>
+              <b className="places__found">{placesMessage}</b>
               <SortFormWrapped cssClass={`places`} />
-              <OfferListWrapped offers={props.offers} />
+              <OfferListWrapped offers={offers} />
             </section>
             <div className="cities__right-section">
-              <Map location={props.offers.map((offer) => offer.location)} city={props.cityLocation} cssClass={`cities`} />
+              <Map location={offers.map((offer) => offer.location)} city={cityLocation} cssClass={`cities`} />
             </div>
           </div>
         </div>
