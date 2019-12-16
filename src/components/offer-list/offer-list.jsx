@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import OfferCard from '../offer-card/offer-card.jsx';
 
 const OfferList = (props) => {
-  const {offers, onActiveItem , onNotActiveItem} = props;
+  const {offers, onActiveItem, onNotActiveItem} = props;
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.slice().reverse().map((offer) => {

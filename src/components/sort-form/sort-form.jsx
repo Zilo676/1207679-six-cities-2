@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import { getSortType } from '../../reducer/hotels/selectors';
+import {getSortType} from '../../reducer/hotels/selectors';
 
 const SortForm = (props) => {
-  const { cssClass, onClick, isActive, onForm, currentSortType } = props;
+  const {cssClass, onClick, isActive, onForm, currentSortType} = props;
   const openedClass = cssClass + (isActive ? `__options--opened` : `__options--closed`);
 
   return (
@@ -26,7 +26,7 @@ const SortForm = (props) => {
 
     </form>
   );
-}
+};
 
 SortForm.propTypes = {
   cssClass: PropTypes.string.isRequired,
@@ -40,7 +40,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentSortType: getSortType(state),
 });
 
-export { SortForm };
+export {SortForm};
 
 export default connect(mapStateToProps, null)(SortForm);
 

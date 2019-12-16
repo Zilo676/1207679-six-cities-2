@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import { ActionCreator } from '../../reducer/hotels/hotels';
+import {ActionCreator} from '../../reducer/hotels/hotels';
 
 const withSort = (Component) => {
   class WithSort extends React.PureComponent {
@@ -10,7 +11,7 @@ const withSort = (Component) => {
 
       this.state = {
         isOpened: false,
-      }
+      };
 
       this._onClickHandler = this._onClickHandler.bind(this);
       this._omFormHanler = this._omFormHanler.bind(this);
@@ -20,7 +21,7 @@ const withSort = (Component) => {
       this.props.chancheSortType(evt.target.textContent);
     }
 
-    _omFormHanler(){
+    _omFormHanler() {
       this.setState((state) => {
         return {
           isOpened: !state.isOpened
@@ -39,7 +40,9 @@ const withSort = (Component) => {
     }
   }
 
-  WithSort.propTypes = {};
+  WithSort.propTypes = {
+    chancheSortType: PropTypes.func.isRequired,
+  };
 
   const mapDispatchToProps = (dispatch) => ({
     chancheSortType: (sortType) => {

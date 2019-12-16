@@ -87,7 +87,7 @@ class Map extends React.PureComponent {
     });
 
     const activeItem = this.props.activeItem;
-    if(activeItem && activeItem.location){
+    if (activeItem && activeItem.location) {
       leaflet
         .marker([activeItem.location.latitude, activeItem.location.longitude], {iconActive})
         .addTo(this._markerGroup);

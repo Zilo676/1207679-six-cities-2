@@ -3,7 +3,7 @@ const SortType = {
   PRICE_ASC: `Price: low to high`,
   PRICE_DESC: `Price: high to low`,
   RATING_DESC: `Top rated first`
-}
+};
 
 const initialState = {
   hotels: [],

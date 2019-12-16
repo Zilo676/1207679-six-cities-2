@@ -21,13 +21,17 @@ const withActiveItem = (Component) => {
     _handleActiveItem(item) {
       this.setState({
         item
-      }, () => {this.props.onActiveItem(this.state.item)});
+      }, () => {
+        this.props.onActiveItem(this.state.item);
+      });
     }
 
     _handleNotActiveItem() {
       this.setState({
         item: null,
-      }, () => {this.props.onActiveItem(this.state.item)});
+      }, () => {
+        this.props.onActiveItem(this.state.item);
+      });
     }
 
     render() {
