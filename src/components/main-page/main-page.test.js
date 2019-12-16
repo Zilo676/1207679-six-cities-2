@@ -8,6 +8,10 @@ jest.mock(`../map/map.jsx`, () => `Map123`);
 jest.mock(`../city-list/city-list.jsx`, () => `City list`);
 jest.mock(`../header/header.jsx`, () => `Header`);
 
+jest.mock(`../../hocs/with-active-item/with-active-item`, () => () =>
+  (Component) => (props) => <Component {...props} />
+);
+
 // jest.mock(`../../reducer/hotels/selectors`, () => `Selector`);
 // jest.mock(`../../reducer/city/selectors`, () => `Selector`);
 // jest.mock(`../../hocs/with-active-item/with-active-item`, () => `Hoc`);
@@ -19,6 +23,9 @@ it.skip(`Correctly rendered`, () => {
   const tree = renderer.create(<MainPage
     offers={[]}
     city={city}
+    cities={[`Abc`, `abc`]}
+    cityLocation={{}}
+    getOffers={() => {}}
   />).toJSON();
   expect(tree).toMatchSnapshot();
 });
