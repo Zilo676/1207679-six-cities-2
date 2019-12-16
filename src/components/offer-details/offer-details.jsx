@@ -17,12 +17,14 @@ import {Operation} from '../../reducer/comments/comments';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 const OfferListWrapped = withActiveItem(OfferList);
+const MAX_IMAGES = 6;
 
 const OfferDetails = (props) => {
 
   if (props.offer) {
-    const {onClick, id, nearOffers} = props;
-    const {description, rating, type, bedrooms, price, goods, images, host, isPremium, maxAdults} = props.offer;
+    const {onClick, id, nearOffers, offer} = props;
+    const {description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults} = offer;
+    const images = offer.images.length > MAX_IMAGES ? offer.images.slice(0, MAX_IMAGES) : offer.images;
 
     return (
       <div className="page" onScroll={() => onClick(id)}>
