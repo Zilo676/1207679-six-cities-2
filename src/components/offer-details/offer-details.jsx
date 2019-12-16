@@ -12,7 +12,9 @@ import Map from '../map/map.jsx';
 import {offerType} from '../../prop-types/offer';
 
 import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
-import {Operation} from '../../reducer/comments/comments';
+import {getAuthorizationStatus} from '../../reducer/user/selectors';
+import {Operation as commentsOperation} from '../../reducer/comments/comments';
+import {Operation as favoritesOperation} from '../../reducer/favorites/favorites'
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
@@ -22,8 +24,8 @@ const MAX_IMAGES = 6;
 const OfferDetails = (props) => {
 
   if (props.offer) {
-    const {onClick, id, nearOffers, offer} = props;
-    const {description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults} = offer;
+    const {onClick, onButtonClick, id, nearOffers, offer, isAutorizationRequired} = props;
+    const {description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults, title} = offer;
     const images = offer.images.length > MAX_IMAGES ? offer.images.slice(0, MAX_IMAGES) : offer.images;
 
     return (
@@ -34,7 +36,7 @@ const OfferDetails = (props) => {
           <div className="property__gallery">
             {images.map((it, i) => (
               <div key={i + it.toString()} className="property__image-wrapper">
-                <img className="property__image" src={it} alt="img/room.jpg" />
+                <img className="property__image" src={it} alt="/img/room.jpg" />
               </div>))
             }
           </div>
@@ -50,13 +52,25 @@ const OfferDetails = (props) => {
             }
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {description}
+                {title}
               </h1>
+              {
+                !isAutorizationRequired &&
+                <button className="property__bookmark-button property-card__bookmark-button--active button" type="button" onClick={(evt) => {
+                  evt.preventDefault();
+                  onButtonClick(offer.id, !offer.isFavorite | 0);
+                }}>
+                  <svg className="property__bookmark-icon" width="40" height="40" style={{fill: offer.isFavorite ? `#4481c3` : `none`}}>
+                    <use xlinkHref="#icon-bookmark"></use>
+                  </svg>
+                  <span className="visually-hidden">In bookmarks</span>
+                </button>
+              }
             </div>
 
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <Rating rating={rating}/>
+                <Rating rating={rating} />
               </div>
               <span className="property__rating-value rating__value">{rating}</span>
             </div>
@@ -85,7 +99,7 @@ const OfferDetails = (props) => {
               </ul>
             </div>
 
-            <div className="property__host" onClick={()=>onClick(id)}>
+            <div className="property__host" onClick={() => onClick(id)}>
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
@@ -127,19 +141,25 @@ OfferDetails.propTypes = {
   onClick: PropTypes.func,
   nearOffers: PropTypes.array,
   cityLocation: PropTypes.shape(),
+  isAutorizationRequired: PropTypes.bool.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offer: getHotelById(state, ownProps),
   nearOffers: getRandomHotels(state),
   cityLocation: getCityLocation(state),
+  isAutorizationRequired: getAuthorizationStatus(state),
 }
 );
 
 const mapDispatchToProps = (dispatch) => ({
   onClick: (hotelId) => {
-    dispatch(Operation.loadComments(hotelId));
-  }
+    dispatch(commentsOperation.loadComments(hotelId));
+  },
+  onButtonClick: (hotelId, status) => {
+    dispatch(favoritesOperation.changeFavoriteStatus(hotelId, status));
+  },
 });
 
 export {OfferDetails};

@@ -35,6 +35,6 @@ const offerType = PropTypes.shape(
         zoom: PropTypes.number.isRequired,
       })
     }
-).isRequired;
+);
 
 export {offerType};
