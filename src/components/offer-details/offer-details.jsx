@@ -9,6 +9,8 @@ import ReviewList from '../review-list/review-list.jsx';
 import {OfferList} from '../offer-list/offer-list.jsx';
 import Map from '../map/map.jsx';
 
+import {offerType} from '../../prop-types/offer';
+
 import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
 import {Operation} from '../../reducer/comments/comments';
 
@@ -119,42 +121,7 @@ const OfferDetails = (props) => {
 
 OfferDetails.propTypes = {
   id: PropTypes.number.isRequired,
-  offer: PropTypes.shape(
-      {
-        id: PropTypes.number.isRequired,
-        city: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          location: PropTypes.shape({
-            latitude: PropTypes.number.isRequired,
-            longitude: PropTypes.number.isRequired,
-            zoom: PropTypes.number.isRequired,
-          })
-        }),
-        previewImage: PropTypes.string.isRequired,
-        images: PropTypes.arrayOf(PropTypes.string),
-        title: PropTypes.string.isRequired,
-        isFavorite: PropTypes.bool.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        rating: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired,
-        bedrooms: PropTypes.number.isRequired,
-        maxAdults: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        goods: PropTypes.arrayOf(PropTypes.string.isRequired),
-        host: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          isPro: PropTypes.bool.isRequired,
-          name: PropTypes.string.isRequired,
-          avatarUrl: PropTypes.string.isRequired,
-        }),
-        description: PropTypes.string.isRequired,
-        location: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired,
-        })
-      }
-  ),
+  offer: offerType,
   onClick: PropTypes.func,
   nearOffers: PropTypes.array,
   cityLocation: PropTypes.shape(),
