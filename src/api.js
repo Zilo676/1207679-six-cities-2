@@ -3,6 +3,13 @@ import {ActionCreator} from './reducer/user/user';
 
 const BASE_URL = `https://htmlacademy-react-2.appspot.com/six-cities`;
 
+const Path = {
+  MAIN_PAGE: `/`,
+  FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  OFFER_DETAILS:`/offer`
+};
+
 const toCamel = (s) => {
   return s.replace(/([-_][a-z])/ig, (it) => {
     return it.toUpperCase()
@@ -38,7 +45,6 @@ const createAPI = (dispatch, history) => {
   const onSuccess = (response) => (Object.assign({}, response, {data: keysToCamel(response.data)}));
   const onFail = (err) => {
     if (err.response.status === 403 || err.response.status === 401) {
-      // history.push(`/login`);
       dispatch(ActionCreator.requiredAuthorization(true));
     }
     return err;
@@ -50,6 +56,7 @@ const createAPI = (dispatch, history) => {
 };
 
 export {
+  Path,
   createAPI,
   BASE_URL
 };

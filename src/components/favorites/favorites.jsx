@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import {Path} from '../../api';
+
 import {OfferList} from '../offer-list/offer-list.jsx';
 import Header from '../header/header.jsx';
 import {FavoritesEmpty} from '../favorites-empty/favorites-empty.jsx';
@@ -10,6 +12,7 @@ import {FavoritesEmpty} from '../favorites-empty/favorites-empty.jsx';
 import {getFavoritesByCities, getFavorites} from '../../reducer/favorites/selectors.js';
 import {getAllCities} from '../../reducer/city/selectors';
 import {ActionCreator} from '../../reducer/city/city';
+import {pathToFileURL} from 'url';
 
 const Favorites = (props) => {
   const {allCities, favorites, allFavorites, onClick} = props;
@@ -27,7 +30,7 @@ const Favorites = (props) => {
                 <li key={city + i} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <Link className="locations__item-link" to="/"><span onClick={() => onClick(city)}>{city}</span></Link>
+                      <Link className="locations__item-link" to={Path.MAIN_PAGE}><span onClick={() => onClick(city)}>{city}</span></Link>
                     </div>
                   </div>
                   <div className="favorites__places">
@@ -40,7 +43,7 @@ const Favorites = (props) => {
         </ul>
       </div>
       <footer className="footer container">
-        <Link to="/" className="footer__logo-link">
+        <Link to={Path.MAIN_PAGE} className="footer__logo-link">
           <img className="footer__logo" src="/img/logo.svg" alt="6 cities logo" width="64" height="33" />
         </Link>
       </footer>

@@ -4,19 +4,19 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {getUser} from '../../reducer/user/selectors';
-import {BASE_URL} from '../../api';
+import {BASE_URL, Path} from '../../api';
 
 const Header = (props) => {
   const email = Object.keys(props.user).length === 0 ? `Sign in` : props.user.email;
   const avatarUrl = Object.keys(props.user).length === 0 ? `` : props.user.avatarUrl;
-  const link = Object.keys(props.user).length === 0 ? `/login` : `/favorites`;
+  const link = Object.keys(props.user).length === 0 ? Path.LOGIN : Path.FAVORITES;
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to={`/`} className="header__logo-link header__logo-link--active">
+            <Link to={Path.MAIN_PAGE} className="header__logo-link header__logo-link--active">
               <img className="header__logo" src="/img/logo.svg" alt="/img/logo.svg" width="81" height="41" />
             </Link>
           </div>

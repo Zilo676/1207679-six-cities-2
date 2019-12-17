@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
+import {Path} from '../../api';
+
 import {Operation} from '../../reducer/favorites/favorites';
 import {Rating} from '../rating/rating.jsx';
 
@@ -21,9 +23,9 @@ const OfferCard = (props) => {
         <span>{offer.isPremium ? `Premium` : `Not premium`}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${Path.OFFER_DETAILS}/${+offer.id}`}>{offer.title}
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -35,7 +37,7 @@ const OfferCard = (props) => {
             evt.preventDefault();
             onClick(offer.id, !offer.isFavorite | 0);
           }}>
-            <svg className="place-card__bookmark-icon" width="18" height="19" style= {{fill: offer.isFavorite ? `#4481c3` : `none`}}>
+            <svg className="place-card__bookmark-icon" width="18" height="19" style={{fill: offer.isFavorite ? `#4481c3` : `none`}}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
@@ -43,11 +45,11 @@ const OfferCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <Rating rating={offer.rating}/>
+            <Rating rating={offer.rating} />
           </div>
         </div>
         <h2 className="place-card__name" >
-          <Link to={`/offer/${+offer.id}`}>{offer.title}</Link>
+          <Link to={`${Path.OFFER_DETAILS}/${+offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -63,7 +65,7 @@ OfferCard.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick: (hotelId, status) =>{
+  onClick: (hotelId, status) => {
     dispatch(Operation.changeFavoriteStatus(hotelId, status));
   },
 });

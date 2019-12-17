@@ -11,9 +11,7 @@ const City = (props) => {
     onActiveItem(city);
     onClick(city);
   }}>
-    <a className="locations__item-link tabs__item" href="#">
-      <span>{city}</span>
-    </a>
+    <span className="locations__item-link tabs__item">{city}</span>
   </li>);
 };
 

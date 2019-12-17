@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
+import {Path} from '../../api';
+
 import Header from '../header/header.jsx';
 
 const SignIn = (props) => {
@@ -39,7 +41,7 @@ const SignIn = (props) => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link to='/' ><span className="locations__item-link">Amsterdam</span></Link>
+              <Link to={Path.MAIN_PAGE} ><span className="locations__item-link">Amsterdam</span></Link>
             </div>
           </section>
         </div>
