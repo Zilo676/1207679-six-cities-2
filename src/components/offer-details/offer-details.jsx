@@ -8,6 +8,7 @@ import { Rating } from '../rating/rating.jsx';
 import ReviewList from '../review-list/review-list.jsx';
 import { OfferList } from '../offer-list/offer-list.jsx';
 import Map from '../map/map.jsx';
+import { CommentForm } from '../comment-form/comment-form.jsx';
 
 import { offerType } from '../../prop-types/offer';
 
@@ -133,7 +134,13 @@ class OfferDetails extends React.PureComponent {
                 </div>
               </div>
 
-              <ReviewList />
+              <div className="property__reviews reviews">
+                <ReviewList />
+                {
+                  !isAutorizationRequired &&
+                  <CommentForm />
+                }
+              </div>
 
               <Map
                 location={nearOffers.map((it) => it.location)}
