@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 const CommentForm = (props) => {
 
-  const { onRatingClick, onTextArea, onSubmit, hotelId } = props;
+  const { onRatingClick, onTextArea, onSubmit, hotelId, isDisabled, onFormChange } = props;
 
   return (
 
-    // TODO: reset after request
-    <form className="reviews__form form" >
+    <form className="reviews__form form" onChange={() => { onFormChange() }} onSubmit={(evt) => { evt.preventDefault(); evt.target.reset(); onSubmit(hotelId); }}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
+        {/* TODO: Optimize */}
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" onClick={(evt) => onRatingClick(evt)} />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -46,12 +46,12 @@ const CommentForm = (props) => {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => onTextArea(evt)}></textarea>
+      <textarea onSubmit={() => { reset(); }} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => onTextArea(evt)}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">300 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="button" disabled="" onClick={() => onSubmit(hotelId)}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled ? false : true} >Submit</button>
       </div>
     </form>
   );
@@ -61,7 +61,9 @@ CommentForm.propTypes = {
   onRatingClick: PropTypes.func.isRequired,
   onTextArea: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  hotelId: PropTypes.number,
+  hotelId: PropTypes.number.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  onFormChange: PropTypes.func.isRequired,
 }
 
 export { CommentForm };

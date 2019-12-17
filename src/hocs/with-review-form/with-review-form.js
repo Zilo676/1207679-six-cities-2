@@ -4,19 +4,23 @@ import { connect } from 'react-redux';
 
 import { Operation } from '../../reducer/comments/comments';
 
+const INITIAL_STATE = {
+  rating: 0,
+  review: '',
+  isDisabled: false,
+};
+
 const withReviewForm = (Component) => {
   class WithReviewForm extends React.PureComponent {
     constructor(props) {
       super(props);
 
-      this.state = {
-        rating: 0,
-        review: ''
-      };
+      this.state = INITIAL_STATE;
 
       this._ratingClickHandler = this._ratingClickHandler.bind(this);
       this._textAreaHandler = this._textAreaHandler.bind(this);
       this._sumbitHandler = this._sumbitHandler.bind(this);
+      this._formHandler = this._formHandler.bind(this);
     }
 
     _ratingClickHandler(evt) {
@@ -31,11 +35,22 @@ const withReviewForm = (Component) => {
 
     _sumbitHandler(hotelId) {
       const { rating, review } = this.state;
-      console.log({ rating, review });
-      if (rating && review)
+      if (rating && review) {
         this.props.sendComment(hotelId, rating, review);
+        this.setState(INITIAL_STATE);
+      }
       else
         alert(`Fill form`);
+    }
+
+    _isValidate() {
+      debugger;
+      return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0)
+    }
+
+    _formHandler() {
+      const isDisabled = this._isValidate();
+      this.setState({ isDisabled });
     }
 
     render() {
@@ -44,6 +59,8 @@ const withReviewForm = (Component) => {
         onRatingClick={this._ratingClickHandler}
         onTextArea={this._textAreaHandler}
         onSubmit={this._sumbitHandler}
+        isDisabled={this.state.isDisabled}
+        onFormChange={this._formHandler}
       />;
     }
   }
