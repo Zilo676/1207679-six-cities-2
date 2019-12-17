@@ -9,7 +9,10 @@ const ReviewList = (props) => {
   const {comments} = props;
 
   return (
-    comments.map((review, i) => (<Review key={i} review={review} />))
+    <React.Fragment>
+    <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+    {comments.map((review, i) => (<Review key={i} review={review} />))}
+    </React.Fragment>
   );
 };
 
