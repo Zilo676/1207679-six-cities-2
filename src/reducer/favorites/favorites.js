@@ -1,6 +1,4 @@
-import {
-  Operation as hotelsOperation
-} from '../hotels/hotels';
+import {Operation as hotelsOperation} from '../hotels/hotels';
 
 const initialState = {
   favorites: [],
@@ -29,8 +27,8 @@ const Operation = {
 
   changeFavoriteStatus: (hotelId, status) => (dispatch, _getState, api) => {
     return api.post(`/favorite/${hotelId}/${status}`)
-      .then((response) => {
-        dispatch(ActionCreator.loadFavorites(response.data));
+      .then(() => {
+        dispatch(Operation.loadFavorites());
         dispatch(hotelsOperation.loadHotels());
       });
   },

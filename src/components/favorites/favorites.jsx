@@ -54,7 +54,7 @@ Favorites.propTypes = {
   allCities: PropTypes.array,
   favorites: PropTypes.shape(),
   onClick: PropTypes.func,
-  allFavorites: PropTypes.shape(),
+  allFavorites: PropTypes.array,
 };
 
 const mapStateTpProps = (state, ownProps) => Object.assign({}, ownProps, {
