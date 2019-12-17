@@ -5,13 +5,10 @@ exports[`Correctly rendered 1`] = `
   className="locations__item"
   onClick={[Function]}
 >
-  <a
-    className="locations__item-link tabs__item"
-    href="#"
+  <span
+    className="locations__item-link tabs__item "
   >
-    <span>
-      Amsterdam
-    </span>
-  </a>
+    Amsterdam
+  </span>
 </li>
 `;
