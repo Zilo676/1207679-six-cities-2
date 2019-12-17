@@ -7,7 +7,7 @@ const Path = {
   MAIN_PAGE: `/`,
   FAVORITES: `/favorites`,
   LOGIN: `/login`,
-  OFFER_DETAILS:`/offer`
+  OFFER_DETAILS: `/offer`
 };
 
 const toCamel = (s) => {
@@ -35,7 +35,7 @@ const keysToCamel = (object) => {
   return object;
 };
 
-const createAPI = (dispatch, history) => {
+const createAPI = (dispatch) => {
   const api = axios.create({
     baseURL: BASE_URL,
     timeout: 5000,

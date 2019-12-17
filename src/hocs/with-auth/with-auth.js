@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducer/user/selectors';
 import {Redirect} from 'react-router-dom';
+import {Path} from '../../api';
 
 const withAuth = (Component) => {
   class WithAuth extends React.PureComponent {
@@ -12,7 +13,7 @@ const withAuth = (Component) => {
 
     render() {
       if (this.props.isAuthorizationRequired) {
-        return <Redirect to={"/login"} />
+        return <Redirect to={Path.MAIN_PAGE} />;
       } else {
         return <Component
           {...this.props}
@@ -30,7 +31,6 @@ const withAuth = (Component) => {
   });
 
   return connect(mapStateTpProps)(WithAuth);
-}
+};
 
 export default withAuth;
-

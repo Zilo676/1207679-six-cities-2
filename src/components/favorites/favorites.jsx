@@ -12,7 +12,6 @@ import {FavoritesEmpty} from '../favorites-empty/favorites-empty.jsx';
 import {getFavoritesByCities, getFavorites} from '../../reducer/favorites/selectors.js';
 import {getAllCities} from '../../reducer/city/selectors';
 import {ActionCreator} from '../../reducer/city/city';
-import {pathToFileURL} from 'url';
 
 const Favorites = (props) => {
   const {allCities, favorites, allFavorites, onClick} = props;
@@ -37,7 +36,7 @@ const Favorites = (props) => {
                     <OfferList offers={favorites[city]} onActiveItem={() => {}} onNotActiveItem={() => {}} />
                   </div>
                 </li>
-              )
+              );
             })
           )}
         </ul>
@@ -49,13 +48,14 @@ const Favorites = (props) => {
       </footer>
     </React.Fragment>
   );
-}
+};
 
 Favorites.propTypes = {
   allCities: PropTypes.array,
   favorites: PropTypes.shape(),
   onClick: PropTypes.func,
-}
+  allFavorites: PropTypes.shape(),
+};
 
 const mapStateTpProps = (state, ownProps) => Object.assign({}, ownProps, {
   allCities: getAllCities(state),
@@ -71,4 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateTpProps, mapDispatchToProps)(Favorites);
 
-export {Favorites}
+export {Favorites};

@@ -8,21 +8,22 @@ const NAME_SPACE = NameSpace.FAVORITES;
 const getFavorites = (state) => state[NAME_SPACE].favorites;
 
 const getFavoritesByCities = createSelector(
-  getFavorites,
-  getAllCities,
-  (favorites, cities) => {
-    let result = {};
-    cities.forEach((city) => {
-      result[city] = [];
-      if (favorites !== `undefined`) {
-        favorites.forEach((it) => {
-          if (it.city.name === city)
-            result[city].push(it);
-        });
-      }
-    });
-    return result;
-  }
+    getFavorites,
+    getAllCities,
+    (favorites, cities) => {
+      let result = {};
+      cities.forEach((city) => {
+        result[city] = [];
+        if (favorites !== `undefined`) {
+          favorites.forEach((it) => {
+            if (it.city.name === city) {
+              result[city].push(it);
+            }
+          });
+        }
+      });
+      return result;
+    }
 );
 
 export {

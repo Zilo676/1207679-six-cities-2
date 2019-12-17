@@ -14,6 +14,6 @@ const FavoritesEmpty = () => {
       </div>
     </main>
   );
-}
+};
 
 export {FavoritesEmpty};

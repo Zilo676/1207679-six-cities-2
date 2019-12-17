@@ -18,7 +18,7 @@ import {Operation as favoritesOperation} from './reducer/favorites/favorites';
 
 const init = () => {
   const history = createBrowserHistory();
-  const api = createAPI((...args) => store.dispatch(...args), history);
+  const api = createAPI((...args) => store.dispatch(...args));
 
   const store = createStore(
       reducer,
