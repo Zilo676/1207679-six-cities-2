@@ -100,7 +100,6 @@ class Map extends React.PureComponent {
     }
 
     const offerDetailsItem = this.props.offerDetailsItem;
-    debugger;
     if (offerDetailsItem) {
       leaflet
         .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], { icon:iconOfferDetails })

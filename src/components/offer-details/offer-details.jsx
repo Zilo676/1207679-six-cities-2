@@ -18,9 +18,12 @@ import { Operation as commentsOperation } from '../../reducer/comments/comments'
 import { Operation as favoritesOperation } from '../../reducer/favorites/favorites'
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import withReviewForm from '../../hocs/with-review-form/with-review-form'
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MAX_IMAGES = 6;
+
+const CommentFormWrapped = withReviewForm(CommentForm);
 
 class OfferDetails extends React.PureComponent {
   constructor(props) {
@@ -138,7 +141,7 @@ class OfferDetails extends React.PureComponent {
                 <ReviewList />
                 {
                   !isAutorizationRequired &&
-                  <CommentForm />
+                  <CommentFormWrapped hotelId={id}/>
                 }
               </div>
 

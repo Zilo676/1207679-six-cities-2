@@ -22,6 +22,17 @@ const Operation = {
         dispatch(ActionCreator.loadComments(response.data));
       });
   },
+
+  sendComment: (hotelId, rating, comment) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${hotelId}`, {
+      rating,
+      comment,
+    })
+
+      .then((response) => {
+        dispatch(ActionCreator.loadComments(response.data));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
