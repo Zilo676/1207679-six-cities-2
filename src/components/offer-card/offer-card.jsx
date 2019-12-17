@@ -23,7 +23,7 @@ const OfferCard = (props) => {
         <span>{offer.isPremium ? `Premium` : `Not premium`}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${Path.OFFER_DETAILS}/${+offer.id}`}>{offer.title}
+        <Link to={`${Path.OFFER_DETAILS}/${+offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
