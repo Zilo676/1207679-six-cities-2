@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly rendered 1`] = `
+Array [
+  <span
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />,
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>,
+]
+`;
