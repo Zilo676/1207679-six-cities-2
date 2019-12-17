@@ -15,10 +15,9 @@ const ReviewList = (props) => {
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
       {comments
         .sort((a, b) => {
-          return (new Date(a.date)) > (new Date(b.date)) ? 1 : -1;
+          return (new Date(a.date)) < (new Date(b.date)) ? 1 : -1;
         })
         .slice(0, comments.length > MAX_COMMENTS ? MAX_COMMENTS : comments.length)
-        .reverse()
         .map((review, i) => (<Review key={i} review={review} />))}
     </React.Fragment>
   );
