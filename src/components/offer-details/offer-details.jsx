@@ -135,7 +135,12 @@ class OfferDetails extends React.PureComponent {
 
               <ReviewList />
 
-              <Map location={nearOffers.map((it) => it.location)} city={cityLocation} cssClass={`property`} />
+              <Map
+                location={nearOffers.map((it) => it.location)}
+                city={cityLocation}
+                cssClass={`property`}
+                offerDetailsItem={{ latitude: offer.location.latitude, longitude: offer.location.longitude }}
+              />
 
               <OfferListWrapped offers={nearOffers} />
 

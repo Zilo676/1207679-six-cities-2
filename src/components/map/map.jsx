@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import {connect} from 'react-redux';
-import {getActiveItem} from '../../reducer/active-item/selectors';
+import { connect } from 'react-redux';
+import { getActiveItem } from '../../reducer/active-item/selectors';
 
 const MapConfiguration = {
   ZOOM: 12,
-  ICON_URL: `/img/pin.svg`,
   ICON_ACTIVE_URL: `/img/pin-active.svg`,
+  ICON_URL: `/img/pin.svg`,
+  ICON_OFFER_DETAILS: `/img/pin-offer.svg`,
   ICON_SIZE: [30, 30],
   TILE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   TILE_ATTRIBUTE: `&copy; <a href="htps://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
@@ -17,12 +18,17 @@ const MapConfiguration = {
 
 const icon = leaflet.icon({
   iconUrl: MapConfiguration.ICON_URL,
-  iconSize: MapConfiguration.ICON_SIZE
+  iconSize: MapConfiguration.ICON_SIZE,
 });
 
 const iconActive = leaflet.icon({
-  iconUrl: MapConfiguration.ICON_URL,
-  iconSize: MapConfiguration.ICON_ACTIVE_URL
+  iconUrl: MapConfiguration.ICON_ACTIVE_URL,
+  iconSize: MapConfiguration.ICON_SIZE
+});
+
+const iconOfferDetails = leaflet.icon({
+  iconUrl: MapConfiguration.ICON_OFFER_DETAILS,
+  iconSize: MapConfiguration.ICON_SIZE,
 });
 
 class Map extends React.PureComponent {
@@ -82,14 +88,22 @@ class Map extends React.PureComponent {
     const offersСoordinates = this.props.location;
     offersСoordinates.forEach((it) => {
       leaflet
-        .marker([it.latitude, it.longitude], {icon})
+        .marker([it.latitude, it.longitude], { icon })
         .addTo(this._markerGroup);
     });
 
     const activeItem = this.props.activeItem;
     if (activeItem && activeItem.location) {
       leaflet
-        .marker([activeItem.location.latitude, activeItem.location.longitude], {iconActive})
+        .marker([activeItem.location.latitude, activeItem.location.longitude], { icon:iconActive })
+        .addTo(this._markerGroup);
+    }
+
+    const offerDetailsItem = this.props.offerDetailsItem;
+    debugger;
+    if (offerDetailsItem) {
+      leaflet
+        .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], { icon:iconOfferDetails })
         .addTo(this._markerGroup);
     }
   }
@@ -114,13 +128,17 @@ Map.propTypes = {
       zoom: PropTypes.number.isRequired,
     })
   }),
-  activeItem: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string])
+  activeItem: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string]),
+  offerDetailsItem: PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+  }),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeItem: getActiveItem(state),
 });
 
-export {Map};
+export { Map };
 
 export default connect(mapStateToProps, null)(Map);
