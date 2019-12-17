@@ -38,7 +38,7 @@ const createAPI = (dispatch, history) => {
   const onSuccess = (response) => (Object.assign({}, response, {data: keysToCamel(response.data)}));
   const onFail = (err) => {
     if (err.response.status === 403 || err.response.status === 401) {
-      history.push(`/login`);
+      // history.push(`/login`);
       dispatch(ActionCreator.requiredAuthorization(true));
     }
     return err;
