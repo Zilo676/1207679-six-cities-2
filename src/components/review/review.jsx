@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Rating} from '../rating/rating.jsx';
+import { Rating } from '../rating/rating.jsx';
+import moment from 'moment';
+
+const convertDate = (dateString) => moment(new Date(dateString)).format(`YYYY-MM-DD`);
 
 const Review = (props) => {
-  const {review} = props;
+  const { review } = props;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -24,7 +27,7 @@ const Review = (props) => {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime={convertDate(review.date)}>{convertDate(review.date)}</time>
       </div>
     </li>);
 };
@@ -44,4 +47,4 @@ Review.propTypes = {
   })
 };
 
-export {Review};
+export { Review };
