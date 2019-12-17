@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import Header from '../header/header.jsx';
-import { NotLoad } from '../not-load/not-load.jsx';
-import { Rating } from '../rating/rating.jsx';
+import {NotLoad} from '../not-load/not-load.jsx';
+import {Rating} from '../rating/rating.jsx';
 import ReviewList from '../review-list/review-list.jsx';
-import { OfferList } from '../offer-list/offer-list.jsx';
+import {OfferList} from '../offer-list/offer-list.jsx';
 import Map from '../map/map.jsx';
-import { CommentForm } from '../comment-form/comment-form.jsx';
+import {CommentForm} from '../comment-form/comment-form.jsx';
 
-import { offerType } from '../../prop-types/offer';
+import {offerType} from '../../prop-types/offer';
 
-import { getHotelById, getRandomHotels, getCityLocation } from '../../reducer/hotels/selectors.js';
-import { getAuthorizationStatus } from '../../reducer/user/selectors';
-import { Operation as commentsOperation } from '../../reducer/comments/comments';
-import { Operation as favoritesOperation } from '../../reducer/favorites/favorites'
+import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors';
+import {Operation as commentsOperation} from '../../reducer/comments/comments';
+import {Operation as favoritesOperation} from '../../reducer/favorites/favorites';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import withReviewForm from '../../hocs/with-review-form/with-review-form'
+import withReviewForm from '../../hocs/with-review-form/with-review-form';
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MAX_IMAGES = 6;
@@ -40,12 +40,12 @@ class OfferDetails extends React.PureComponent {
 
   render() {
     if (this.props.offer) {
-      const { onButtonClick, id, nearOffers, offer, isAutorizationRequired, cityLocation } = this.props;
-      const { description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults, title } = offer;
+      const {onButtonClick, id, nearOffers, offer, isAutorizationRequired, cityLocation} = this.props;
+      const {description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults, title} = offer;
       const images = offer.images.length > MAX_IMAGES ? offer.images.slice(0, MAX_IMAGES) : offer.images;
 
       return (
-        <div className="page" onScroll={() => onClick(id)}>
+        <div className="page" >
           <Header />
 
           <div className="property__gallery-container container">
@@ -76,7 +76,7 @@ class OfferDetails extends React.PureComponent {
                     evt.preventDefault();
                     onButtonClick(offer.id, !offer.isFavorite | 0);
                   }}>
-                    <svg className="property__bookmark-icon" width="40" height="40" style={{ fill: offer.isFavorite ? `#4481c3` : `none` }}>
+                    <svg className="property__bookmark-icon" width="40" height="40" style={{fill: offer.isFavorite ? `#4481c3` : `none`}}>
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">In bookmarks</span>
@@ -127,7 +127,7 @@ class OfferDetails extends React.PureComponent {
                   {host.isPro &&
                     <span className="property__user-status">
                       Pro
-                  </span>
+                    </span>
                   }
                 </div>
                 <div className="property__description">
@@ -141,7 +141,7 @@ class OfferDetails extends React.PureComponent {
                 <ReviewList />
                 {
                   !isAutorizationRequired &&
-                  <CommentFormWrapped hotelId={id}/>
+                  <CommentFormWrapped hotelId={id} />
                 }
               </div>
 
@@ -149,7 +149,7 @@ class OfferDetails extends React.PureComponent {
                 location={nearOffers.map((it) => it.location)}
                 city={cityLocation}
                 cssClass={`property`}
-                offerDetailsItem={{ latitude: offer.location.latitude, longitude: offer.location.longitude }}
+                offerDetailsItem={{latitude: offer.location.latitude, longitude: offer.location.longitude}}
               />
 
               <OfferListWrapped offers={nearOffers} />
@@ -161,7 +161,7 @@ class OfferDetails extends React.PureComponent {
     }
     return <NotLoad />;
   }
-};
+}
 
 OfferDetails.propTypes = {
   id: PropTypes.number.isRequired,
@@ -190,6 +190,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export { OfferDetails };
+export {OfferDetails};
 
 export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);

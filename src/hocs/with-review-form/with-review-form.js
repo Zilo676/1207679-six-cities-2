@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Operation } from '../../reducer/comments/comments';
+import {Operation} from '../../reducer/comments/comments';
 
 const INITIAL_STATE = {
   rating: 0,
-  review: '',
+  review: ``,
   isDisabled: false,
 };
 
@@ -25,32 +25,29 @@ const withReviewForm = (Component) => {
 
     _ratingClickHandler(evt) {
       const rating = evt.target.value;
-      this.setState({ rating });
+      this.setState({rating});
     }
 
     _textAreaHandler(evt) {
       const review = evt.target.value;
-      this.setState({ review });
+      this.setState({review});
     }
 
     _sumbitHandler(hotelId) {
-      const { rating, review } = this.state;
+      const {rating, review} = this.state;
       if (rating && review) {
         this.props.sendComment(hotelId, rating, review);
         this.setState(INITIAL_STATE);
       }
-      else
-        alert(`Fill form`);
     }
 
     _isValidate() {
-      debugger;
-      return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0)
+      return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0);
     }
 
     _formHandler() {
       const isDisabled = this._isValidate();
-      this.setState({ isDisabled });
+      this.setState({isDisabled});
     }
 
     render() {
@@ -67,7 +64,7 @@ const withReviewForm = (Component) => {
 
   WithReviewForm.propTypes = {
     sendComment: PropTypes.func.isRequired,
-  }
+  };
 
   const mapDispatchToProps = (dispatch) => ({
     sendComment: (hotelId, rating, comment) => {
@@ -76,6 +73,6 @@ const withReviewForm = (Component) => {
   });
 
   return connect(null, mapDispatchToProps)(WithReviewForm);
-}
+};
 
 export default withReviewForm;

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import { connect } from 'react-redux';
-import { getActiveItem } from '../../reducer/active-item/selectors';
+import {connect} from 'react-redux';
+import {getActiveItem} from '../../reducer/active-item/selectors';
 
 const MapConfiguration = {
   ZOOM: 12,
@@ -88,21 +88,21 @@ class Map extends React.PureComponent {
     const offersСoordinates = this.props.location;
     offersСoordinates.forEach((it) => {
       leaflet
-        .marker([it.latitude, it.longitude], { icon })
+        .marker([it.latitude, it.longitude], {icon})
         .addTo(this._markerGroup);
     });
 
     const activeItem = this.props.activeItem;
     if (activeItem && activeItem.location) {
       leaflet
-        .marker([activeItem.location.latitude, activeItem.location.longitude], { icon:iconActive })
+        .marker([activeItem.location.latitude, activeItem.location.longitude], {icon: iconActive})
         .addTo(this._markerGroup);
     }
 
     const offerDetailsItem = this.props.offerDetailsItem;
     if (offerDetailsItem) {
       leaflet
-        .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], { icon:iconOfferDetails })
+        .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], {icon: iconOfferDetails})
         .addTo(this._markerGroup);
     }
   }
@@ -138,6 +138,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeItem: getActiveItem(state),
 });
 
-export { Map };
+export {Map};
 
 export default connect(mapStateToProps, null)(Map);

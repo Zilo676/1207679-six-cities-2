@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Review } from '../review/review.jsx';
-import { getComments } from '../../reducer/comments/selectors';
+import {Review} from '../review/review.jsx';
+import {getComments} from '../../reducer/comments/selectors';
 
 const MAX_COMMENTS = 10;
 
 const ReviewList = (props) => {
-  const { comments } = props;
+  const {comments} = props;
 
   return (
     <React.Fragment>
@@ -31,6 +31,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   comments: getComments(state),
 });
 
-export { ReviewList };
+export {ReviewList};
 
 export default connect(mapStateToProps, null)(ReviewList);
