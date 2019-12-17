@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {OfferList} from '../offer-list/offer-list.jsx';
 import Header from '../header/header.jsx';
@@ -8,9 +9,10 @@ import {FavoritesEmpty} from '../favorites-empty/favorites-empty.jsx';
 
 import {getFavoritesByCities, getFavorites} from '../../reducer/favorites/selectors.js';
 import {getAllCities} from '../../reducer/city/selectors';
+import {ActionCreator} from '../../reducer/city/city';
 
 const Favorites = (props) => {
-  const {allCities, favorites, allFavorites} = props;
+  const {allCities, favorites, allFavorites, onClick} = props;
   return (
     <React.Fragment>
       <div className="page__favorites-container container">
@@ -25,9 +27,7 @@ const Favorites = (props) => {
                 <li key={city + i} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <a className="locations__item-link" href="#">
-                        <span>{city}</span>
-                      </a>
+                      <Link className="locations__item-link" to="/"><span onClick={() => onClick(city)}>{city}</span></Link>
                     </div>
                   </div>
                   <div className="favorites__places">
@@ -40,9 +40,9 @@ const Favorites = (props) => {
         </ul>
       </div>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link to="/" className="footer__logo-link">
           <img className="footer__logo" src="/img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </React.Fragment>
   );
@@ -51,6 +51,7 @@ const Favorites = (props) => {
 Favorites.propTypes = {
   allCities: PropTypes.array,
   favorites: PropTypes.shape(),
+  onClick: PropTypes.func,
 }
 
 const mapStateTpProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -59,6 +60,12 @@ const mapStateTpProps = (state, ownProps) => Object.assign({}, ownProps, {
   allFavorites: getFavorites(state),
 });
 
-export default connect(mapStateTpProps, null)(Favorites);
+const mapDispatchToProps = (dispatch) => ({
+  onClick: (city) => {
+    dispatch(ActionCreator.setCity(city));
+  },
+});
+
+export default connect(mapStateTpProps, mapDispatchToProps)(Favorites);
 
 export {Favorites}
