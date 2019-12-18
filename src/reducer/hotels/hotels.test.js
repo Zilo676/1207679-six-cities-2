@@ -134,4 +134,11 @@ describe(`ActionCreator works correctly`, () => {
       ]
     });
   });
+
+  it(`ActionCreator returns correct action2`, () => {
+    expect(ActionCreator.setSortType(`sort`)).toEqual({
+      type: ActionType.SET_SORT_TYPE,
+      payload: `sort`
+    });
+  });
 });

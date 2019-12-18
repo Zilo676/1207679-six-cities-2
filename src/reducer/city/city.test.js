@@ -1,5 +1,6 @@
 import {
   ActionType,
+  ActionCreator,
   reducer,
 } from './city';
 
@@ -12,17 +13,20 @@ describe(`Reducer works correctly`, () => {
       city: ``,
     });
   });
-  it(`Reducer correctly change city`, () => {
-    expect(reducer({
-      cities: CITIES,
-      city: CITIES[0],
-    },
-    {
+});
+
+describe(`ActionCreator works correctly`, () => {
+  it(`ActionCreator returns correct action`, () => {
+    expect(ActionCreator.setCity(`city`)).toEqual({
       type: ActionType.SET_CITY,
-      payload: `ABC`,
-    })).toEqual({
-      cities: CITIES,
-      city: `ABC`,
+      payload: `city`,
+    });
+  });
+
+  it(`ActionCreator returns correct action2`, () => {
+    expect(ActionCreator.setCities(CITIES)).toEqual({
+      type: ActionType.SET_CITIES,
+      payload: CITIES,
     });
   });
 });
