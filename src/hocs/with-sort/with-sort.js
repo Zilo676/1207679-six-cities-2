@@ -13,8 +13,8 @@ const withSort = (Component) => {
         isOpened: false,
       };
 
-      this._onClickHandler = this.handleClick.bind(this);
-      this._omFormHanler = this.handleForm.bind(this);
+      this.handleClick = this.handleClick.bind(this);
+      this.handleForm = this.handleForm.bind(this);
     }
 
     handleClick(evt) {

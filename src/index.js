@@ -10,7 +10,7 @@ import {compose} from 'recompose';
 import {createBrowserHistory} from 'history';
 
 import {App} from './components/app/app.jsx';
-import reducer from './reducer/index';
+import reducer from './reducer/reducer';
 import {createAPI} from './api';
 import {Operation as hotelsOperation} from './reducer/hotels/hotels';
 import {Operation as userOperation} from './reducer/user/user';

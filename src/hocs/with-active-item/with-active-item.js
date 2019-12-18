@@ -13,8 +13,8 @@ const withActiveItem = (Component) => {
         item: null,
       };
 
-      this._handleActiveItem = this.handleActiveItem.bind(this);
-      this._handleNotActiveItem = this.handleNotActiveItem.bind(this);
+      this.handleActiveItem = this.handleActiveItem.bind(this);
+      this.handleNotActiveItem = this.handleNotActiveItem.bind(this);
 
     }
 

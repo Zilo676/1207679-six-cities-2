@@ -17,10 +17,10 @@ const withReviewForm = (Component) => {
 
       this.state = INITIAL_STATE;
 
-      this._ratingClickHandler = this.handleClickRating.bind(this);
-      this._textAreaHandler = this.handleAreaText.bind(this);
-      this._sumbitHandler = this.handleSumbit.bind(this);
-      this._formHandler = this.handleForm.bind(this);
+      this.handleClickRating = this.handleClickRating.bind(this);
+      this.handleAreaText = this.handleAreaText.bind(this);
+      this.handleSumbit = this.handleSumbit.bind(this);
+      this.handleForm = this.handleForm.bind(this);
     }
 
     handleClickRating(evt) {

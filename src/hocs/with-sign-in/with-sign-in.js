@@ -14,7 +14,7 @@ const withSignIn = (Component) => {
         password: ``,
       };
 
-      this._inputHandler = this.handleInput.bind(this);
+      this.handleInput = this.handleInput.bind(this);
     }
 
     handleInput(field, value) {
