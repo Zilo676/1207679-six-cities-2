@@ -14,12 +14,11 @@ const App = () => {
 
   const SignInWrapped = withSignIn(SignIn);
   const FavoritesWrapped = withAuth(Favorites);
-  const OfferDetailsWrapped = withAuth(OfferDetails);
 
   return (
     <Switch>
       <Route exact path={Path.LOGIN} component={SignInWrapped} />
-      <Route exact path={`${Path.OFFER_DETAILS}/:id`} render={({match}) => <OfferDetailsWrapped id={+match.params.id} />} />
+      <Route exact path={`${Path.OFFER_DETAILS}/:id`} render={({match}) => <OfferDetails id={+match.params.id} />} />
       <Route exact path={Path.FAVORITES} component={FavoritesWrapped} />
       <Route exact path={Path.MAIN_PAGE} component={MainPage} />
     </Switch>
