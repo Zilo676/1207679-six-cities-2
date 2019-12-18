@@ -7,7 +7,7 @@ const CommentForm = (props) => {
 
   return (
 
-    <form className="reviews__form form" onChange={(evt) => {evt.preventDefault(); onFormChange()}}
+    <form className="reviews__form form" onChange={() => onFormChange()}
       onSubmit={(evt) => {
         evt.preventDefault();
         evt.target.reset();
@@ -52,7 +52,7 @@ const CommentForm = (props) => {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => {onTextArea(evt);}}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => onTextArea(evt)}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">300 characters</b>.

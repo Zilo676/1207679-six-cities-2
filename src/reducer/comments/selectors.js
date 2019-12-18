@@ -4,4 +4,6 @@ const NAME_SPACE = NameSpace.COMMENTS;
 
 const getComments = (state) => state[NAME_SPACE].comments;
 
-export {getComments};
+const getBlockStatus = (state) => state[NAME_SPACE].isBlock;
+
+export {getComments, getBlockStatus};

@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {Operation} from '../../reducer/comments/comments';
+import {getBlockStatus} from '../../reducer/comments/selectors';
 
 const INITIAL_STATE = {
   rating: 0,
   review: ``,
   isDisabled: false,
+  error: ``
 };
 
 const withReviewForm = (Component) => {
@@ -25,7 +27,9 @@ const withReviewForm = (Component) => {
 
     handleClickRating(evt) {
       const rating = +evt.target.value;
-      this.setState({rating});
+      this.setState({rating}, () => {
+        this.handleForm();
+      });
     }
 
     handleAreaText(evt) {
@@ -38,13 +42,14 @@ const withReviewForm = (Component) => {
     handleSumbit(hotelId) {
       const {rating, review} = this.state;
       if (rating && review) {
-        this.props.sendComment(hotelId, rating, review);
-        this.setState(INITIAL_STATE);
+        const onSucc = () => this.setState(INITIAL_STATE);
+        const onFail = (error) => (this.setState({error}));
+        this.props.sendComment(hotelId, rating, review, {onFail, onSucc});
       }
     }
 
     isValidate() {
-      return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0);
+      return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0 && this.props.isBlock !== true);
     }
 
     handleForm() {
@@ -67,15 +72,21 @@ const withReviewForm = (Component) => {
 
   WithReviewForm.propTypes = {
     sendComment: PropTypes.func.isRequired,
+    isBlock: PropTypes.bool,
   };
 
+  const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+    isBlock: getBlockStatus(state),
+  }
+  );
+
   const mapDispatchToProps = (dispatch) => ({
-    sendComment: (hotelId, rating, comment) => {
-      dispatch(Operation.sendComment(hotelId, rating, comment));
+    sendComment: (hotelId, rating, comment, options) => {
+      dispatch(Operation.sendComment(hotelId, rating, comment, options));
     },
   });
 
-  return connect(null, mapDispatchToProps)(WithReviewForm);
+  return connect(mapStateToProps, mapDispatchToProps)(WithReviewForm);
 };
 
 export default withReviewForm;

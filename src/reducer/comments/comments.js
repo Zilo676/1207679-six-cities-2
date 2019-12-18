@@ -1,9 +1,11 @@
 const initialState = {
   comments: [],
+  isBlock: false
 };
 
 const ActionType = {
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+  SET_BLOCK: `SET_BLOCK`,
 };
 
 const ActionCreator = {
@@ -13,6 +15,12 @@ const ActionCreator = {
       payload: comments
     };
   },
+  setBlock: (status) => {
+    return {
+      type: ActionType.SET_BLOCK,
+      payload: status
+    };
+  }
 };
 
 const Operation = {
@@ -23,14 +31,28 @@ const Operation = {
       });
   },
 
-  sendComment: (hotelId, rating, comment) => (dispatch, _getState, api) => {
+  sendComment: (hotelId, rating, comment, {onFail, onSucc}) => (dispatch, _getState, api) => {
+    dispatch(ActionCreator.setBlock(true));
     return api.post(`/comments/${hotelId}`, {
       rating,
       comment,
     })
 
       .then((response) => {
-        dispatch(ActionCreator.loadComments(response.data));
+        if (response.code === 200) {
+          dispatch(ActionCreator.loadComments(response.data));
+        }
+        dispatch(ActionCreator.setBlock(false));
+        if (onSucc) {
+          onSucc();
+        }
+
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.setBlock(false));
+        if (onFail) {
+          onFail(err.message);
+        }
       });
   }
 };

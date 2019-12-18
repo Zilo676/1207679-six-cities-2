@@ -31,6 +31,11 @@ exports[`Correctly rendered 1`] = `
       <svg
         className="form__star-image"
         height="33"
+        style={
+          Object {
+            "fill": "#c7c7c7",
+          }
+        }
         width="37"
       >
         <use
@@ -54,6 +59,11 @@ exports[`Correctly rendered 1`] = `
       <svg
         className="form__star-image"
         height="33"
+        style={
+          Object {
+            "fill": "#c7c7c7",
+          }
+        }
         width="37"
       >
         <use
@@ -77,6 +87,11 @@ exports[`Correctly rendered 1`] = `
       <svg
         className="form__star-image"
         height="33"
+        style={
+          Object {
+            "fill": "#c7c7c7",
+          }
+        }
         width="37"
       >
         <use
@@ -100,6 +115,11 @@ exports[`Correctly rendered 1`] = `
       <svg
         className="form__star-image"
         height="33"
+        style={
+          Object {
+            "fill": "#c7c7c7",
+          }
+        }
         width="37"
       >
         <use
@@ -123,6 +143,11 @@ exports[`Correctly rendered 1`] = `
       <svg
         className="form__star-image"
         height="33"
+        style={
+          Object {
+            "fill": "#c7c7c7",
+          }
+        }
         width="37"
       >
         <use
