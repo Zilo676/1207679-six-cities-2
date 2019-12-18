@@ -35,7 +35,8 @@ const Operation = {
           dispatch(ActionCreator.requiredAuthorization(false));
           dispatch(ActionCreator.setUser(response.data));
         }
-      });
+      })
+      .catch(() => {});
   },
 
   checkAutorize: () => (dispatch, _getState, api) => {
@@ -45,7 +46,8 @@ const Operation = {
           dispatch(ActionCreator.requiredAuthorization(false));
           dispatch(ActionCreator.setUser(response.data));
         }
-      });
+      })
+      .catch(() => {});
   }
 
 };

@@ -28,7 +28,8 @@ const Operation = {
     return api.get(`/comments/${hotelId}`)
       .then((response) => {
         dispatch(ActionCreator.loadComments(response.data));
-      });
+      })
+      .catch(() => {});
   },
 
   sendComment: (hotelId, rating, comment, {onFail, onSucc}) => (dispatch, _getState, api) => {
@@ -37,11 +38,8 @@ const Operation = {
       rating,
       comment,
     })
-
       .then((response) => {
-        if (response.code === 200) {
-          dispatch(ActionCreator.loadComments(response.data));
-        }
+        dispatch(ActionCreator.loadComments(response.data));
         dispatch(ActionCreator.setBlock(false));
         if (onSucc) {
           onSucc();

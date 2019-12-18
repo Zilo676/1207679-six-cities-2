@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CommentForm = (props) => {
 
-  const {onRatingClick, onTextArea, onSubmit, hotelId, isDisabled, onFormChange, rating} = props;
+  const {onRatingClick, onTextArea, onSubmit, hotelId, isDisabled, onFormChange, rating, errorForForm, textForm} = props;
 
   return (
 
@@ -52,11 +52,12 @@ const CommentForm = (props) => {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => onTextArea(evt)}></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => onTextArea(evt)}>{textForm}</textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters and no more than 300 </b>.
         </p>
+        <p>{errorForForm}</p>
         <button className="reviews__submit form__submit button" type="submit" disabled={isDisabled ? false : true} >Submit</button>
       </div>
     </form>
@@ -71,6 +72,8 @@ CommentForm.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   onFormChange: PropTypes.func.isRequired,
   rating: PropTypes.number,
+  errorForForm: PropTypes.string,
+  textForm: PropTypes.string,
 };
 
 export {CommentForm};

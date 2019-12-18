@@ -42,7 +42,7 @@ const withReviewForm = (Component) => {
     handleSumbit(hotelId) {
       const {rating, review} = this.state;
       if (rating && review) {
-        const onSucc = () => this.setState(INITIAL_STATE);
+        const onSucc = () => this.setState(() => INITIAL_STATE);
         const onFail = (error) => (this.setState({error}));
         this.props.sendComment(hotelId, rating, review, {onFail, onSucc});
       }
@@ -63,9 +63,11 @@ const withReviewForm = (Component) => {
         onRatingClick={this.handleClickRating}
         onTextArea={this.handleAreaText}
         onSubmit={this.handleSumbit}
-        isDisabled={this.state.isDisabled}
+        isDisabled={this.state.isDisabled || this.props.isBlock}
         onFormChange={this.handleForm}
         rating={this.state.rating}
+        errorForForm={this.state.error}
+        textForm={this.state.review}
       />;
     }
   }

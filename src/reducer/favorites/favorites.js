@@ -22,7 +22,8 @@ const Operation = {
     return api.get(`/favorite`)
       .then((response) => {
         dispatch(ActionCreator.loadFavorites(response.data));
-      });
+      })
+      .catch(() => {});
   },
 
   changeFavoriteStatus: (hotelId, status) => (dispatch, _getState, api) => {

@@ -48,7 +48,8 @@ const Operation = {
           dispatch(cityActionCreator.setCities(cities));
           dispatch(cityActionCreator.setCity(cities.length > 0 ? cities[0] : ``));
         }
-      });
+      })
+      .catch(() => {});
   },
 };
 
