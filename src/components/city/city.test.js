@@ -9,6 +9,7 @@ it(`Correctly rendered`, () => {
     city={`Amsterdam`}
     onClick={mockFunc}
     onActiveItem={mockFunc}
+    currentCity={`ASDB`}
   />).toJSON();
   expect(tree).toMatchSnapshot();
 });

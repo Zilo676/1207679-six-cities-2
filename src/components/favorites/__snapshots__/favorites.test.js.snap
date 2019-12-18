@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly rendered 1`] = `
+Array [
+  <div
+    className="page__favorites-container container"
+  >
+    <h1
+      className="favorites__title"
+    >
+      Saved listing
+    </h1>
+    <ul
+      className="favorites__list"
+    >
+      <li
+        className="favorites__locations-items"
+      >
+        <div
+          className="favorites__locations locations locations--current"
+        >
+          <div
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link"
+              href="/"
+              onClick={[Function]}
+            >
+              <span
+                onClick={[Function]}
+              >
+                Amsterdam
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="favorites__places"
+        />
+      </li>
+    </ul>
+  </div>,
+  <footer
+    className="footer container"
+  >
+    <a
+      className="footer__logo-link"
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="/img/logo.svg"
+        width="64"
+      />
+    </a>
+  </footer>,
+]
+`;

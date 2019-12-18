@@ -44,6 +44,7 @@ it(`Correctly rendered`, () => {
     }}
     onOfferCardHover={onOfferCardHover}
     onClick={onOfferCardHover}
+    onOfferCardLeave={onOfferCardHover}
   /></BrowserRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();

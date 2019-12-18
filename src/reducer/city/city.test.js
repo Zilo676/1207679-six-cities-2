@@ -1,5 +1,4 @@
 import {
-  ActionCreator,
   ActionType,
   reducer,
 } from './city';
@@ -9,8 +8,8 @@ const CITIES = [`Amsterdam`, `Brussels`, `Cologne`, `Dusseldorf`, `Hamburg`, `Pa
 describe(`Reducer works correctly`, () => {
   it(`Reducer return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      cities: CITIES,
-      city: CITIES[0],
+      cities: [],
+      city: ``,
     });
   });
   it(`Reducer correctly change city`, () => {
@@ -28,11 +27,3 @@ describe(`Reducer works correctly`, () => {
   });
 });
 
-describe(`ActionCreator works correcly`, () => {
-  it(`Action creator return correct action`, () => {
-    expect(ActionCreator.setCity(`AAAA`)).toEqual({
-      type: ActionType.SET_CITY,
-      payload: `AAAA`,
-    });
-  });
-});

@@ -3,22 +3,20 @@ import renderer from 'react-test-renderer';
 
 import {MainPage} from './main-page.jsx';
 
-jest.mock(`../offer-list/offer-list.jsx`, () => `Offer list`);
-jest.mock(`../map/map.jsx`, () => `Map123`);
-jest.mock(`../city-list/city-list.jsx`, () => `City list`);
-jest.mock(`../header/header.jsx`, () => `Header`);
+jest.mock(`../offer-list/offer-list.jsx`);
+jest.mock(`../map/map.jsx`);
+jest.mock(`../city-list/city-list.jsx`);
+jest.mock(`../header/header.jsx`);
+jest.mock(`../sort-form/sort-form.jsx`);
 
-jest.mock(`../../hocs/with-active-item/with-active-item`, () => () =>
-  (Component) => (props) => <Component {...props} />
-);
 
-// jest.mock(`../../reducer/hotels/selectors`, () => `Selector`);
-// jest.mock(`../../reducer/city/selectors`, () => `Selector`);
-// jest.mock(`../../hocs/with-active-item/with-active-item`, () => `Hoc`);
+jest.mock(`../../hocs/with-active-item/with-active-item.jsx`);
+jest.mock(`../../hocs/with-sort/with-sort.jsx`);
+
 
 const city = `Paris`;
 
-it.skip(`Correctly rendered`, () => {
+it(`Correctly rendered`, () => {
 
   const tree = renderer.create(<MainPage
     offers={[]}

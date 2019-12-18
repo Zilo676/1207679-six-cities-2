@@ -3,15 +3,18 @@ import renderer from 'react-test-renderer';
 
 import {OfferDetails} from './offer-details.jsx';
 
-jest.mock(`../not-load/not-load.jsx`, () => `Not load`);
-jest.mock(`../header/header.jsx`, () => `Header`);
+jest.mock(`../not-load/not-load.jsx`);
+jest.mock(`../header/header.jsx`);
+jest.mock(`../rating/rating.jsx`);
+jest.mock(`../review-list/review-list.jsx`);
+jest.mock(`../offer-list/offer-list.jsx`);
+jest.mock(`../map/map.jsx`);
+jest.mock(`../comment-form/comment-form.jsx`);
 
-jest.mock(`../rating/rating.jsx`, () => `Raiting`);
-jest.mock(`../review-list/review-list.jsx`, () => `Review list`);
-jest.mock(`../offer-list/offer-list.jsx`, () => `Offer list`);
-jest.mock(`../map/map.jsx`, () => `Map`);
+jest.mock(`../../hocs/with-active-item/with-active-item.jsx`);
+jest.mock(`../../hocs/with-review-form/with-review-form.jsx`);
 
-it.skip(`Correctly rendered`, () => {
+it(`Correctly rendered`, () => {
   // const mockFunc = jest.fn();
   const offer = {
     id: 1,
@@ -48,12 +51,24 @@ it.skip(`Correctly rendered`, () => {
     }
   };
 
+
+  // id: PropTypes.number.isRequired,
+  // offer: offerType,
+  // loadComments: PropTypes.func,
+  // hotels: PropTypes.array,
+  // cityLocation: PropTypes.shape(),
+  // isAutorizationRequired: PropTypes.bool.isRequired,
+  // onButtonClick: PropTypes.func.isRequired,
+  // loadHotels: PropTypes.func.isRequired,
   const tree = renderer.create(<OfferDetails
     offer={offer}
     id={25}
     nearOffers={[offer, offer]}
-    onClick={() => {}}
+    onButtonClick={() => {}}
     cityLocation={{}}
+    loadComments={() => {}}
+    loadHotels={() => {}}
+    isAutorizationRequired={false}
   />).toJSON();
   expect(tree).toMatchSnapshot();
 });

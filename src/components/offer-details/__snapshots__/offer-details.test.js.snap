@@ -4,7 +4,6 @@ exports[`Correctly rendered 1`] = `
 <div
   className="page"
 >
-  <Not load />
   <div
     className="property__gallery-container container"
   >
@@ -15,7 +14,7 @@ exports[`Correctly rendered 1`] = `
         className="property__image-wrapper"
       >
         <img
-          alt="img/room.jpg"
+          alt="/img/room.jpg"
           className="property__image"
           src="img/1.png"
         />
@@ -24,7 +23,7 @@ exports[`Correctly rendered 1`] = `
         className="property__image-wrapper"
       >
         <img
-          alt="img/room.jpg"
+          alt="/img/room.jpg"
           className="property__image"
           src="img/2.png"
         />
@@ -43,28 +42,40 @@ exports[`Correctly rendered 1`] = `
         <h1
           className="property__name"
         >
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
+          Beautiful & luxurious studio at great location
         </h1>
+        <button
+          className="property__bookmark-button property-card__bookmark-button--active button"
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="property__bookmark-icon"
+            height="40"
+            style={
+              Object {
+                "fill": "none",
+              }
+            }
+            width="40"
+          >
+            <use
+              xlinkHref="#icon-bookmark"
+            />
+          </svg>
+          <span
+            className="visually-hidden"
+          >
+            In bookmarks
+          </span>
+        </button>
       </div>
       <div
         className="property__rating rating"
       >
         <div
           className="property__stars rating__stars"
-        >
-          <span
-            style={
-              Object {
-                "width": "96%",
-              }
-            }
-          />
-          <span
-            className="visually-hidden"
-          >
-            Rating
-          </span>
-        </div>
+        />
         <span
           className="property__rating-value rating__value"
         >
@@ -191,6 +202,9 @@ exports[`Correctly rendered 1`] = `
           </p>
         </div>
       </div>
+      <div
+        className="property__reviews reviews"
+      />
     </div>
   </div>
 </div>

@@ -13,8 +13,8 @@ import {offerType} from '../../prop-types/offer';
 import {getSortedHotels, getCityLocation} from "../../reducer/hotels/selectors";
 import {getCurrentCity, getAllCities} from "../../reducer/city/selectors";
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import withSort from '../../hocs/with-sort/with-sort';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withSort from '../../hocs/with-sort/with-sort.jsx';
 
 const OfferListWrapped = withActiveItem(OfferList);
 const CityListWrapped = withActiveItem(CityList);

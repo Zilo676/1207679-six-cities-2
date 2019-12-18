@@ -18,8 +18,8 @@ import {Operation as commentsOperation} from '../../reducer/comments/comments';
 import {Operation as favoritesOperation} from '../../reducer/favorites/favorites';
 import {Operation as hotelsOperation} from '../../reducer/hotels/hotels';
 
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import withReviewForm from '../../hocs/with-review-form/with-review-form';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
 
 const OfferListWrapped = withActiveItem(OfferList);
 const MAX_IMAGES = 6;
