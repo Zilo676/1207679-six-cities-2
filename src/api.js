@@ -10,7 +10,7 @@ const Path = {
   OFFER_DETAILS: `/offer`
 };
 
-const toCamel = (s) => {
+const convertStringToCamel = (s) => {
   return s.replace(/([-_][a-z])/ig, (it) => {
     return it.toUpperCase()
       .replace(`-`, ``)
@@ -18,17 +18,17 @@ const toCamel = (s) => {
   });
 };
 
-const keysToCamel = (object) => {
+const convertKeysToCamel = (object) => {
   if (object === Object(object) && !Array.isArray(object) && typeof object !== `function`) {
     const n = {};
 
     Object.keys(object).forEach((key) => {
-      n[toCamel(key)] = keysToCamel(object[key]);
+      n[convertStringToCamel(key)] = convertKeysToCamel(object[key]);
     });
     return n;
   } else if (Array.isArray(object)) {
     return object.map((it) => {
-      return keysToCamel(it);
+      return convertKeysToCamel(it);
     });
   }
 
@@ -42,7 +42,7 @@ const createAPI = (dispatch) => {
     withCredentials: true,
   });
 
-  const onSuccess = (response) => (Object.assign({}, response, {data: keysToCamel(response.data)}));
+  const onSuccess = (response) => (Object.assign({}, response, {data: convertKeysToCamel(response.data)}));
   const onFail = (err) => {
     if (err.response.status === 403 || err.response.status === 401) {
       dispatch(ActionCreator.requiredAuthorization(true));
