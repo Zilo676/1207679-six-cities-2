@@ -1,5 +1,5 @@
 import {ActionCreator as cityActionCreator, initialState as cityInitialState} from '../city/city';
-import NameSpace from '../name-spaces'
+import NameSpace from '../name-spaces';
 
 const SortType = {
   POPULAR: `Popular`,
@@ -38,16 +38,15 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadHotels(response.data));
-        debugger;
         if (Object.is(_getState()[NameSpace.CITY], cityInitialState)) {
           let cities = [];
-          response.data.forEach(element => {
+          response.data.forEach((element) => {
             if (cities.indexOf(element.city.name) < 0) {
               cities.push(element.city.name);
             }
           });
           dispatch(cityActionCreator.setCities(cities));
-          dispatch(cityActionCreator.setCity(cities.length > 0 ? cities[0] : ''));
+          dispatch(cityActionCreator.setCity(cities.length > 0 ? cities[0] : ``));
         }
       });
   },

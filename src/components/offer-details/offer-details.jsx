@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-
-import {Path} from '../../api';
 
 import Header from '../header/header.jsx';
 import {NotLoad} from '../not-load/not-load.jsx';
@@ -15,11 +12,11 @@ import {CommentForm} from '../comment-form/comment-form.jsx';
 
 import {offerType} from '../../prop-types/offer';
 
-import {getHotelById, getRandomHotels, getCityLocation, getHotels} from '../../reducer/hotels/selectors.js';
+import {getHotelById, getCityLocation, getHotels} from '../../reducer/hotels/selectors.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors';
 import {Operation as commentsOperation} from '../../reducer/comments/comments';
 import {Operation as favoritesOperation} from '../../reducer/favorites/favorites';
-import {Operation as hotelsOperation} from '../../reducer/hotels/hotels'
+import {Operation as hotelsOperation} from '../../reducer/hotels/hotels';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
@@ -47,13 +44,13 @@ class OfferDetails extends React.PureComponent {
 
   _generateNearHotels() {
     const maxElements = 3;
-    let nearOffers = []
+    let nearOffers = [];
 
     if (this.props.hotels) {
-      let hotelsByCity = this.props.hotels.filter((it) => this.props.offer.city.name === it.city.name)
-      hotelsByCity.forEach(element => {
-        if (nearOffers.length < maxElements && element.id !== this.props.offer.id) {
-          nearOffers.push(element);
+      let hotelsByCity = this.props.hotels.filter((it) => this.props.offer.city.name === it.city.name);
+      hotelsByCity.forEach((hotel) => {
+        if (nearOffers.length < maxElements && hotel.id !== this.props.offer.id) {
+          nearOffers.push(hotel);
         }
       });
     }

@@ -80,7 +80,7 @@ exports[`Component is rendered correctly 1`] = `
             <span
               className="locations__item-link"
             >
-              Amsterdam
+              Go to cities
             </span>
           </a>
         </div>

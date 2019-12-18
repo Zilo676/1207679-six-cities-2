@@ -6,7 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import {compose, fromRenderProps} from 'recompose';
+import {compose} from 'recompose';
 import {createBrowserHistory} from 'history';
 
 import {App} from './components/app/app.jsx';
