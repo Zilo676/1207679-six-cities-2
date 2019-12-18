@@ -179,7 +179,7 @@ exports[`Correctly rendered 1`] = `
       <b
         className="reviews__text-amount"
       >
-        300 characters
+        50 characters and no more than 300 
       </b>
       .
     </p>
