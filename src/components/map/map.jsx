@@ -120,11 +120,11 @@ Map.propTypes = {
     zoom: PropTypes.number.isRequired,
   })),
   city: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
     })
   }),
   activeItem: PropTypes.oneOfType([PropTypes.shape(), PropTypes.string]),
