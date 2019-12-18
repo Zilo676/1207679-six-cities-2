@@ -28,7 +28,8 @@ const Operation = {
     return api.get(`/comments/${hotelId}`)
       .then((response) => {
         dispatch(ActionCreator.loadComments(response.data));
-      });
+      })
+      .catch(() => {});
   },
 
   sendComment: (hotelId, rating, comment, {onFail, onSucc}) => (dispatch, _getState, api) => {
