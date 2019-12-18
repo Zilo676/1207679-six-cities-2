@@ -14,7 +14,7 @@ const getFavoritesByCities = createSelector(
       let result = {};
       cities.forEach((city) => {
         result[city] = [];
-        if (favorites !== `undefined`) {
+        if (favorites) {
           favorites.forEach((it) => {
             if (it.city.name === city) {
               result[city].push(it);

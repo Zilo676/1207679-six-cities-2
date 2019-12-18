@@ -21,9 +21,8 @@ const Favorites = (props) => {
         <Header />
         <h1 className="favorites__title">Saved listing</h1>
         <ul className="favorites__list">
-
-          {allFavorites.length === 0 && <FavoritesEmpty />}
-          {(allFavorites.length !== 0 &&
+          {(typeof allFavorites === `undefined` || allFavorites.length === 0) && <FavoritesEmpty />}
+          {(allFavorites && allFavorites.length !== 0 &&
             allCities.map((city, i) => {
               return (favorites[city].length > 0 &&
                 <li key={city + i} className="favorites__locations-items">
