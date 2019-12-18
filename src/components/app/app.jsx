@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
 import MainPage from '../main-page/main-page.jsx';
-import {SignIn} from '../sign-in/sign-in.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import OfferDetails from '../offer-details/offer-details.jsx';
 import Favorites from '../favorites/favorites.jsx';
 import {Path} from '../../api';

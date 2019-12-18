@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import {Path} from '../../api';
+import {getAuthorizationStatus} from '../../reducer/user/selectors';
 
 import Header from '../header/header.jsx';
 
 const SignIn = (props) => {
-  const {onChange, email, password, onSubmit} = props;
-  return (
+  const {onChange, email, password, onSubmit, isAuthorizationRequire} = props;
+  return (!isAuthorizationRequire && <Redirect to={Path.MAIN_PAGE} />
+    || isAuthorizationRequire &&
     <div className="page page--gray page--login">
       <Header />
       <main className="page__main page__main--login">
@@ -55,6 +59,13 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func,
   email: PropTypes.string,
   password: PropTypes.string,
+  isAuthorizationRequire: PropTypes.bool,
 };
 
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  isAuthorizationRequire: getAuthorizationStatus(state),
+});
+
 export {SignIn};
+
+export default connect(mapStateToProps, null)(SignIn);
