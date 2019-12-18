@@ -24,13 +24,15 @@ const withReviewForm = (Component) => {
     }
 
     handleClickRating(evt) {
-      const rating = evt.target.value;
+      const rating = +evt.target.value;
       this.setState({rating});
     }
 
     handleAreaText(evt) {
       const review = evt.target.value;
-      this.setState({review});
+      this.setState({review}, () => {
+        this.handleForm();
+      });
     }
 
     handleSumbit(hotelId) {
@@ -58,6 +60,7 @@ const withReviewForm = (Component) => {
         onSubmit={this.handleSumbit}
         isDisabled={this.state.isDisabled}
         onFormChange={this.handleForm}
+        rating={this.state.rating}
       />;
     }
   }
