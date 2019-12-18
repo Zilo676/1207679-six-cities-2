@@ -13,7 +13,7 @@ const withAuth = (Component) => {
 
     render() {
       if (this.props.isAuthorizationRequired) {
-        return <Redirect to={Path.MAIN_PAGE} />;
+        return <Redirect to={Path.LOGIN} />;
       } else {
         return <Component
           {...this.props}
