@@ -15,7 +15,6 @@ jest.mock(`../../hocs/with-active-item/with-active-item.jsx`);
 jest.mock(`../../hocs/with-review-form/with-review-form.jsx`);
 
 it(`Correctly rendered`, () => {
-  // const mockFunc = jest.fn();
   const offer = {
     id: 1,
     city: {
@@ -51,15 +50,6 @@ it(`Correctly rendered`, () => {
     }
   };
 
-
-  // id: PropTypes.number.isRequired,
-  // offer: offerType,
-  // loadComments: PropTypes.func,
-  // hotels: PropTypes.array,
-  // cityLocation: PropTypes.shape(),
-  // isAutorizationRequired: PropTypes.bool.isRequired,
-  // onButtonClick: PropTypes.func.isRequired,
-  // loadHotels: PropTypes.func.isRequired,
   const tree = renderer.create(<OfferDetails
     offer={offer}
     id={25}
