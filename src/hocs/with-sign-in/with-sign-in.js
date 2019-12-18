@@ -14,10 +14,10 @@ const withSignIn = (Component) => {
         password: ``,
       };
 
-      this._inputHandler = this._inputHandler.bind(this);
+      this._inputHandler = this.handleInput.bind(this);
     }
 
-    _inputHandler(field, value) {
+    handleInput(field, value) {
       this.setState({
         [field]: value,
       });
@@ -28,7 +28,7 @@ const withSignIn = (Component) => {
 
       return <Component
         {...this.props}
-        onChange={this._inputHandler}
+        onChange={this.handleInput}
         onSubmit={onSubmit}
         email={this.state.email}
         password={this.state.password}

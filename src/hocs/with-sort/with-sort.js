@@ -13,15 +13,15 @@ const withSort = (Component) => {
         isOpened: false,
       };
 
-      this._onClickHandler = this._onClickHandler.bind(this);
-      this._omFormHanler = this._omFormHanler.bind(this);
+      this._onClickHandler = this.handleClick.bind(this);
+      this._omFormHanler = this.handleForm.bind(this);
     }
 
-    _onClickHandler(evt) {
+    handleClick(evt) {
       this.props.chancheSortType(evt.target.textContent);
     }
 
-    _omFormHanler() {
+    handleForm() {
       this.setState((state) => {
         return {
           isOpened: !state.isOpened
@@ -33,8 +33,8 @@ const withSort = (Component) => {
     render() {
       return <Component
         {...this.props}
-        onClick={this._onClickHandler}
-        onForm={this._omFormHanler}
+        onClick={this.handleClick}
+        onForm={this.handleForm}
         isActive={this.state.isOpened}
       />;
     }

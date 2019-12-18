@@ -13,12 +13,12 @@ const withActiveItem = (Component) => {
         item: null,
       };
 
-      this._handleActiveItem = this._handleActiveItem.bind(this);
-      this._handleNotActiveItem = this._handleNotActiveItem.bind(this);
+      this._handleActiveItem = this.handleActiveItem.bind(this);
+      this._handleNotActiveItem = this.handleNotActiveItem.bind(this);
 
     }
 
-    _handleActiveItem(item) {
+    handleActiveItem(item) {
       this.setState({
         item
       }, () => {
@@ -26,7 +26,7 @@ const withActiveItem = (Component) => {
       });
     }
 
-    _handleNotActiveItem() {
+    handleNotActiveItem() {
       this.setState({
         item: null,
       }, () => {
@@ -37,8 +37,8 @@ const withActiveItem = (Component) => {
     render() {
       return <Component
         {...this.props}
-        onActiveItem={this._handleActiveItem}
-        onNotActiveItem={this._handleNotActiveItem}
+        onActiveItem={this.handleActiveItem}
+        onNotActiveItem={this.handleNotActiveItem}
       />;
     }
   }

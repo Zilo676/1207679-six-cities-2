@@ -17,23 +17,23 @@ const withReviewForm = (Component) => {
 
       this.state = INITIAL_STATE;
 
-      this._ratingClickHandler = this._ratingClickHandler.bind(this);
-      this._textAreaHandler = this._textAreaHandler.bind(this);
-      this._sumbitHandler = this._sumbitHandler.bind(this);
-      this._formHandler = this._formHandler.bind(this);
+      this._ratingClickHandler = this.handleClickRating.bind(this);
+      this._textAreaHandler = this.handleAreaText.bind(this);
+      this._sumbitHandler = this.handleSumbit.bind(this);
+      this._formHandler = this.handleForm.bind(this);
     }
 
-    _ratingClickHandler(evt) {
+    handleClickRating(evt) {
       const rating = evt.target.value;
       this.setState({rating});
     }
 
-    _textAreaHandler(evt) {
+    handleAreaText(evt) {
       const review = evt.target.value;
       this.setState({review});
     }
 
-    _sumbitHandler(hotelId) {
+    handleSumbit(hotelId) {
       const {rating, review} = this.state;
       if (rating && review) {
         this.props.sendComment(hotelId, rating, review);
@@ -41,23 +41,23 @@ const withReviewForm = (Component) => {
       }
     }
 
-    _isValidate() {
+    isValidate() {
       return (this.state.review.length >= 50 && this.state.review.length <= 300 && this.state.rating !== 0);
     }
 
-    _formHandler() {
-      const isDisabled = this._isValidate();
+    handleForm() {
+      const isDisabled = this.isValidate();
       this.setState({isDisabled});
     }
 
     render() {
       return <Component
         {...this.props}
-        onRatingClick={this._ratingClickHandler}
-        onTextArea={this._textAreaHandler}
-        onSubmit={this._sumbitHandler}
+        onRatingClick={this.handleClickRating}
+        onTextArea={this.handleAreaText}
+        onSubmit={this.handleSumbit}
         isDisabled={this.state.isDisabled}
-        onFormChange={this._formHandler}
+        onFormChange={this.handleForm}
       />;
     }
   }
