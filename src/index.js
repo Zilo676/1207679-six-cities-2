@@ -6,7 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import {compose} from 'recompose';
+import {compose, fromRenderProps} from 'recompose';
 import {createBrowserHistory} from 'history';
 
 import {App} from './components/app/app.jsx';
@@ -29,8 +29,8 @@ const init = () => {
   );
 
   store.dispatch(hotelsOperation.loadHotels());
-  store.dispatch(favoritesOperation.loadFavorites());
   store.dispatch(userOperation.checkAutorize());
+  store.dispatch(favoritesOperation.loadFavorites());
 
   ReactDOM.render(<Provider store={store}>
     <Router history={history}>

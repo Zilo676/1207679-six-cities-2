@@ -41,7 +41,7 @@ const SignIn = (props) => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link to={Path.MAIN_PAGE} ><span className="locations__item-link">Amsterdam</span></Link>
+              <Link to={Path.MAIN_PAGE} ><span className="locations__item-link">Go to cities</span></Link>
             </div>
           </section>
         </div>

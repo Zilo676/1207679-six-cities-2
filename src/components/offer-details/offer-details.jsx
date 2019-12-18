@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+
+import {Path} from '../../api';
 
 import Header from '../header/header.jsx';
 import {NotLoad} from '../not-load/not-load.jsx';
@@ -12,10 +15,11 @@ import {CommentForm} from '../comment-form/comment-form.jsx';
 
 import {offerType} from '../../prop-types/offer';
 
-import {getHotelById, getRandomHotels, getCityLocation} from '../../reducer/hotels/selectors.js';
+import {getHotelById, getRandomHotels, getCityLocation, getHotels} from '../../reducer/hotels/selectors.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors';
 import {Operation as commentsOperation} from '../../reducer/comments/comments';
 import {Operation as favoritesOperation} from '../../reducer/favorites/favorites';
+import {Operation as hotelsOperation} from '../../reducer/hotels/hotels'
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
@@ -28,21 +32,40 @@ const CommentFormWrapped = withReviewForm(CommentForm);
 class OfferDetails extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this._generateNearHotels = this._generateNearHotels.bind(this);
   }
 
   componentDidUpdate() {
     this.props.loadComments(this.props.id);
   }
 
-  conmponentDidMount() {
+  componentDidMount() {
     this.props.loadComments(this.props.id);
+    this.props.loadHotels();
+  }
+
+  _generateNearHotels() {
+    const maxElements = 3;
+    let nearOffers = []
+
+    if (this.props.hotels) {
+      let hotelsByCity = this.props.hotels.filter((it) => this.props.offer.city.name === it.city.name)
+      hotelsByCity.forEach(element => {
+        if (nearOffers.length < maxElements && element.id !== this.props.offer.id) {
+          nearOffers.push(element);
+        }
+      });
+    }
+    return nearOffers;
   }
 
   render() {
     if (this.props.offer) {
-      const {onButtonClick, id, nearOffers, offer, isAutorizationRequired, cityLocation} = this.props;
+      const {onButtonClick, id, offer, isAutorizationRequired} = this.props;
       const {description, rating, type, bedrooms, price, goods, host, isPremium, maxAdults, title} = offer;
       const images = offer.images.length > MAX_IMAGES ? offer.images.slice(0, MAX_IMAGES) : offer.images;
+      const nearOffers = this._generateNearHotels();
 
       return (
         <div className="page" >
@@ -147,7 +170,7 @@ class OfferDetails extends React.PureComponent {
 
               <Map
                 location={nearOffers.map((it) => it.location)}
-                city={cityLocation}
+                city={{location: offer.location, city: offer.city.name}}
                 cssClass={`property`}
                 offerDetailsItem={{latitude: offer.location.latitude, longitude: offer.location.longitude}}
               />
@@ -167,15 +190,16 @@ OfferDetails.propTypes = {
   id: PropTypes.number.isRequired,
   offer: offerType,
   loadComments: PropTypes.func,
-  nearOffers: PropTypes.array,
+  hotels: PropTypes.array,
   cityLocation: PropTypes.shape(),
   isAutorizationRequired: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
+  loadHotels: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offer: getHotelById(state, ownProps),
-  nearOffers: getRandomHotels(state),
+  hotels: getHotels(state),
   cityLocation: getCityLocation(state),
   isAutorizationRequired: getAuthorizationStatus(state),
 }
@@ -187,6 +211,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onButtonClick: (hotelId, status) => {
     dispatch(favoritesOperation.changeFavoriteStatus(hotelId, status));
+  },
+  loadHotels: () => {
+    dispatch(hotelsOperation.loadHotels());
   },
 });
 

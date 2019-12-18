@@ -85,6 +85,13 @@ class Map extends React.PureComponent {
   }
 
   _setPoints() {
+    const offerDetailsItem = this.props.offerDetailsItem;
+    if (offerDetailsItem) {
+      leaflet
+        .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], {icon: iconOfferDetails})
+        .addTo(this._markerGroup);
+    }
+
     const offersСoordinates = this.props.location;
     offersСoordinates.forEach((it) => {
       leaflet
@@ -96,13 +103,6 @@ class Map extends React.PureComponent {
     if (activeItem && activeItem.location) {
       leaflet
         .marker([activeItem.location.latitude, activeItem.location.longitude], {icon: iconActive})
-        .addTo(this._markerGroup);
-    }
-
-    const offerDetailsItem = this.props.offerDetailsItem;
-    if (offerDetailsItem) {
-      leaflet
-        .marker([offerDetailsItem.latitude, offerDetailsItem.longitude], {icon: iconOfferDetails})
         .addTo(this._markerGroup);
     }
   }
