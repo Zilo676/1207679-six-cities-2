@@ -38,11 +38,8 @@ const Operation = {
       rating,
       comment,
     })
-
       .then((response) => {
-        if (response.code === 200) {
-          dispatch(ActionCreator.loadComments(response.data));
-        }
+        dispatch(ActionCreator.loadComments(response.data));
         dispatch(ActionCreator.setBlock(false));
         if (onSucc) {
           onSucc();

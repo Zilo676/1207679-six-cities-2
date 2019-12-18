@@ -45,7 +45,7 @@ const createAPI = (dispatch) => {
   const onSuccess = (response) => (Object.assign({}, response, {data: convertKeysToCamel(response.data)}));
   const onFail = (err) => {
     if (err.response && (err.response.status === 403 || err.response.status === 401)) {
-    dispatch(ActionCreator.requiredAuthorization(true));
+      dispatch(ActionCreator.requiredAuthorization(true));
     }
     return Promise.reject(err);
   };
